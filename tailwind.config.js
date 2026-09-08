@@ -7,6 +7,25 @@ export default {
   ],
   theme: {
     extend: {
+      // Breakpoints
+      screens: {
+        mobile: '375px',
+        tablet: '744px',
+        'mini-laptop': '1280px',
+        laptop: '1440px',
+        desktop: '1728px',
+      },
+      // Grid columns
+      gridTemplateColumns: {
+        4: 'repeat(4, minmax(0, 1fr))',
+        6: 'repeat(6, minmax(0, 1fr))',
+        12: 'repeat(12, minmax(0, 1fr))',
+      },
+      // Gutter spacing
+      gap: {
+        gutter: '24px',
+        'gutter-mobile': '16px',
+      },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },

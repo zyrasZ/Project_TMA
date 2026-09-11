@@ -1,38 +1,64 @@
-import React, { forwardRef } from 'react';
-import { Avatar as PrimeAvatar, AvatarProps as PrimeAvatarProps } from 'primereact/avatar';
+import React from 'react';
+import { Avatar as PrimeAvatar } from 'primereact/avatar';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from '../../../lib/utils';
 
-export interface AvatarProps extends Omit<PrimeAvatarProps, 'pt'> {
-  size?: 'normal' | 'large' | 'xlarge';
-  shape?: 'square' | 'circle';
-  src?: string;
+export const avatarVariants = cva(
+  'inline-flex items-center justify-center bg-surface-main text-content-main border border-border overflow-hidden relative',
+  {
+    variants: {
+      size: {
+        normal: 'w-8 h-8 text-sm',
+        large: 'w-10 h-10 text-base',
+        xlarge: 'w-12 h-12 text-lg',
+      },
+      shape: {
+        square: 'rounded-md',
+        circle: 'rounded-full',
+      },
+    },
+    defaultVariants: {
+      size: 'normal',
+      shape: 'circle',
+    },
+  }
+);
+
+export interface AvatarProps extends VariantProps<typeof avatarVariants> {
+  image?: string;
+  imageAlt?: string;
   icon?: string;
   label?: string;
   className?: string;
+  ref?: React.Ref<any>;
 }
 
-export const Avatar = forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
-  const { size = 'normal', shape = 'circle', className, ...rest } = props;
-
+export const Avatar = ({
+  size = 'normal',
+  shape = 'circle',
+  image,
+  imageAlt,
+  icon,
+  label,
+  className,
+  ref,
+  ...props
+}: AvatarProps) => {
   return (
-    <PrimeAvatar
-      // @ts-ignore - PrimeReact ref type might be slightly different
-      ref={ref}
-      size={size}
-      shape={shape}
-      pt={{
-        root: {
-          className: `
-            inline-flex items-center justify-center bg-surface-main text-content-main
-            border border-border overflow-hidden
-            ${className || ''}
-          `
-        },
-        image: { className: 'w-full h-full object-cover' },
-        icon: { className: 'text-content-sub' }
-      }}
-      {...rest}
-    />
+    <PrimeAvatar.Root
+      ref={ref as any}
+      className={cn(avatarVariants({ size, shape }), className)}
+      {...props}
+    >
+      {image ? (
+        <PrimeAvatar.Image src={image} alt={imageAlt} className="w-full h-full object-cover" />
+      ) : (
+        <PrimeAvatar.Fallback className="flex items-center justify-center w-full h-full">
+          {icon ? <span className={cn(icon, 'text-content-sub text-[1.2em]')} /> : <span className="font-medium">{label}</span>}
+        </PrimeAvatar.Fallback>
+      )}
+    </PrimeAvatar.Root>
   );
-});
+};
 
 Avatar.displayName = 'Avatar';

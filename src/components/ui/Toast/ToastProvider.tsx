@@ -1,5 +1,4 @@
-import React, { createContext, useContext, useRef, ReactNode } from 'react';
-import { Toast } from 'primereact/toast';
+import React, { createContext, useContext, useState, ReactNode, useCallback } from 'react';
 import { CustomToastProps, CustomSnackbarProps, DarkToastTemplate, LightSnackbarTemplate } from './ToastTemplates';
 
 interface ToastContextType {
@@ -18,60 +17,84 @@ export const useAppToast = () => {
   return context;
 };
 
+interface ToastItem extends CustomToastProps {
+  id: string;
+}
+
+interface SnackbarItem extends CustomSnackbarProps {
+  id: string;
+}
+
 export const ToastProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const toastTopRight = useRef<Toast>(null);
-  const toastBottomCenter = useRef<Toast>(null);
+  const [toasts, setToasts] = useState<ToastItem[]>([]);
+  const [snackbars, setSnackbars] = useState<SnackbarItem[]>([]);
 
-  const showToast = (props: CustomToastProps) => {
-    toastTopRight.current?.show({
-      severity: props.severity,
-      life: 3000,
-      content: (options) => (
-        <DarkToastTemplate 
-          {...props} 
-          onClose={() => {
-            options.onClose();
-            props.onClose?.();
-          }} 
-        />
-      ),
-    });
-  };
+  const removeToast = useCallback((id: string) => {
+    setToasts((prev) => prev.filter((t) => t.id !== id));
+  }, []);
 
-  const showSnackbar = (props: CustomSnackbarProps) => {
-    toastBottomCenter.current?.show({
-      severity: props.severity,
-      life: 4000,
-      content: (options) => (
-        <LightSnackbarTemplate 
-          {...props} 
-          onClose={() => {
-            options.onClose();
-            props.onClose?.();
-          }} 
-        />
-      ),
-    });
-  };
+  const removeSnackbar = useCallback((id: string) => {
+    setSnackbars((prev) => prev.filter((s) => s.id !== id));
+  }, []);
 
-  const clear = () => {
-    toastTopRight.current?.clear();
-    toastBottomCenter.current?.clear();
-  };
+  const showToast = useCallback((props: CustomToastProps) => {
+    const id = Math.random().toString(36).substring(7);
+    setToasts((prev) => [...prev, { ...props, id }]);
+    
+    setTimeout(() => {
+      removeToast(id);
+    }, 3000);
+  }, [removeToast]);
 
-  // Loại bỏ các class mặc định của PrimeReact để dùng 100% style của Template
-  const basePT = {
-    message: { className: '!bg-transparent !border-0 !p-0 !shadow-none mb-4' },
-    content: { className: '!p-0' },
-    icon: { className: 'hidden' },
-    button: { className: 'hidden' }, // Ẩn nút close mặc định
-  };
+  const showSnackbar = useCallback((props: CustomSnackbarProps) => {
+    const id = Math.random().toString(36).substring(7);
+    setSnackbars((prev) => [...prev, { ...props, id }]);
+    
+    setTimeout(() => {
+      removeSnackbar(id);
+    }, 4000);
+  }, [removeSnackbar]);
+
+  const clear = useCallback(() => {
+    setToasts([]);
+    setSnackbars([]);
+  }, []);
 
   return (
     <ToastContext.Provider value={{ showToast, showSnackbar, clear }}>
       {children}
-      <Toast ref={toastTopRight} position="top-right" pt={basePT} />
-      <Toast ref={toastBottomCenter} position="bottom-center" pt={basePT} />
+      
+      {/* Container for Toasts (Top Right) */}
+      <div className="fixed top-4 right-4 z-[9999] flex flex-col gap-4 pointer-events-none">
+        {toasts.map((toast) => (
+          <DarkToastTemplate 
+            key={toast.id} 
+            {...toast} 
+            onClose={() => {
+              removeToast(toast.id);
+              toast.onClose?.();
+            }} 
+          />
+        ))}
+      </div>
+
+      {/* Container for Snackbars (Bottom Center) */}
+      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[9999] flex flex-col gap-4 pointer-events-none">
+        {snackbars.map((snackbar) => (
+          <LightSnackbarTemplate 
+            key={snackbar.id} 
+            {...snackbar} 
+            onClose={() => {
+              removeSnackbar(snackbar.id);
+              snackbar.onClose?.();
+            }}
+            onAction={() => {
+              snackbar.onAction?.();
+              removeSnackbar(snackbar.id);
+            }}
+          />
+        ))}
+      </div>
     </ToastContext.Provider>
   );
 };

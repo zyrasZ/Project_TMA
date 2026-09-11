@@ -1,6 +1,9 @@
 import js from "@eslint/js";
 
 export default [
+    {
+        ignores: ["test-render.mjs"]
+    },
     js.configs.recommended,
     {
         rules: {

@@ -1,29 +1,51 @@
 import React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from '../../../lib/utils';
 
-export type StatusColor = 'blue' | 'green' | 'orange' | 'red' | 'yellow' | 'grey';
-export type StatusShape = 'circle' | 'square';
+export const statusBadgeVariants = cva('inline-flex items-center gap-2', {
+  variants: {},
+});
 
-export interface StatusBadgeProps {
-  color: StatusColor;
+export const statusBadgeIconVariants = cva('block w-2.5 h-2.5', {
+  variants: {
+    color: {
+      blue: 'bg-info',
+      green: 'bg-success',
+      orange: 'bg-orange-500',
+      red: 'bg-alert',
+      yellow: 'bg-warning',
+      grey: 'bg-content-hint',
+    },
+    shape: {
+      circle: 'rounded-full',
+      square: 'rounded-[2px]',
+    },
+  },
+  defaultVariants: {
+    color: 'grey',
+    shape: 'circle',
+  },
+});
+
+export interface StatusBadgeProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>,
+    VariantProps<typeof statusBadgeIconVariants> {
   label: string;
-  shape?: StatusShape;
-  className?: string;
 }
 
-const colorMap: Record<StatusColor, string> = {
-  blue: 'bg-info', // 3385D7
-  green: 'bg-success', // 41C881
-  orange: 'bg-orange-500', // E05A00
-  red: 'bg-alert', // FF1B0A
-  yellow: 'bg-warning', // FFBE0A
-  grey: 'bg-content-hint', // 969C9C
-};
-
-export const StatusBadge: React.FC<StatusBadgeProps> = ({ color, label, shape = 'circle', className = '' }) => {
+export const StatusBadge = ({
+  color,
+  shape,
+  label,
+  className,
+  ...props
+}: StatusBadgeProps) => {
   return (
-    <div className={`inline-flex items-center gap-2 ${className}`}>
-      <span className={`block w-2.5 h-2.5 ${colorMap[color]} ${shape === 'circle' ? 'rounded-full' : 'rounded-[2px]'}`}></span>
+    <div className={cn(statusBadgeVariants(), className)} {...props}>
+      <span className={cn(statusBadgeIconVariants({ color, shape }))}></span>
       <span className="text-sm font-medium text-content-main">{label}</span>
     </div>
   );
 };
+
+StatusBadge.displayName = 'StatusBadge';

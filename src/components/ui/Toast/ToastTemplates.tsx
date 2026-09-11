@@ -1,5 +1,5 @@
 import React from 'react';
-import { WarningCircle, CheckCircle, Warning, Info, X } from '@phosphor-icons/react';
+import { CheckCircle, Warning, Info, X } from '@phosphor-icons/react';
 
 export type ToastSeverity = 'success' | 'error' | 'warning' | 'info';
 

@@ -4,6 +4,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .animate-blob {
+    animation: blob 15s infinite alternate;
+  }
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+}
+
+@keyframes blob {
+  0% { transform: translate(0vw, 0vh) scale(1); } /* Ở bên phải (vị trí gốc) */
+  25% { transform: translate(-60vw, 30vh) scale(1.1); } /* Góc dưới bên trái */
+  50% { transform: translate(-30vw, 0vh) scale(0.9); } /* Vô giữa */
+  75% { transform: translate(-60vw, -30vh) scale(1.05); } /* Lên phía trên bên trái */
+  100% { transform: translate(0vw, 0vh) scale(1); } /* Quay lại bên phải */
+}
+
 body {
   margin: 0;
   font-family:

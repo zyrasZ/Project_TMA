@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Button } from 'primereact/button';
 
 export const DashboardPage = () => {

@@ -1,10 +1,13 @@
-import React from 'react';
+
 import { AppRouter } from './router';
+import { ToastProvider } from '../components/ui/Toast';
 
 export const App = () => {
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900">
-      <AppRouter />
-    </div>
+    <ToastProvider>
+      <div className="min-h-screen bg-surface-main font-sans">
+        <AppRouter />
+      </div>
+    </ToastProvider>
   );
 };

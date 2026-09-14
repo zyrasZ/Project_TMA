@@ -2,7 +2,7 @@ import js from "@eslint/js";
 
 export default [
     {
-        ignores: ["test-render.mjs"]
+        ignores: ["test-render.mjs", "dist/**"]
     },
     js.configs.recommended,
     {

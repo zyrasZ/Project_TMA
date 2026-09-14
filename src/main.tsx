@@ -5,12 +5,14 @@ import './styles/globals.css';
 import './styles/variables.css';
 
 // PrimeReact styles
-import 'primereact/resources/themes/lara-light-indigo/theme.css';
-import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
+
+import { PrimeReactProvider } from '@primereact/core';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <PrimeReactProvider>
+      <App />
+    </PrimeReactProvider>
   </React.StrictMode>
 );

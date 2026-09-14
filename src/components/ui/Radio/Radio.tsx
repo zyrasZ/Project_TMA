@@ -1,4 +1,5 @@
-import React from 'react';
+
+import type { RadioButtonRootProps } from '@primereact/types/primitive/radiobutton';
 import { RadioButton as PrimeRadioButton } from 'primereact/radiobutton';
 import { cva } from 'class-variance-authority';
 import { cn } from '../../../lib/utils';
@@ -50,7 +51,7 @@ export const radioIconVariants = cva(
   }
 );
 
-export interface RadioProps {
+export interface RadioProps extends Omit<RadioButtonRootProps, 'className' | 'onChange'> {
   label?: string;
   labelClassName?: string;
   className?: string;
@@ -60,7 +61,6 @@ export interface RadioProps {
   value?: any;
   name?: string;
   inputId?: string;
-  ref?: React.Ref<any>;
 }
 
 export const Radio = ({
@@ -73,7 +73,7 @@ export const Radio = ({
   value,
   name,
   inputId,
-  ref,
+  ...props
 }: RadioProps) => {
   const isChecked = !!checked;
   const isDisabled = !!disabled;
@@ -81,7 +81,6 @@ export const Radio = ({
   return (
     <div className={cn('flex items-center gap-2', className)}>
       <PrimeRadioButton.Root
-        ref={ref as any}
         checked={isChecked}
         disabled={isDisabled}
         onCheckedChange={(e: any) => onChange?.({ value: e.value })}
@@ -89,6 +88,7 @@ export const Radio = ({
         name={name}
         inputClassName="absolute inset-0 w-full h-full opacity-0 z-50 cursor-pointer peer"
         className="w-6 h-6 flex items-center justify-center relative"
+        {...props}
       >
         <PrimeRadioButton.Box className={cn(radioBoxVariants({ isChecked, isDisabled }))}>
           <PrimeRadioButton.Indicator className={cn(radioIconVariants({ isChecked }))} />

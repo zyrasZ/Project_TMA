@@ -1,4 +1,5 @@
-import React, { forwardRef } from 'react';
+
+import type { ButtonProps as PRButtonProps } from '@primereact/types/primitive/button';
 import { Button as PRButton } from 'primereact/button';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../../lib/utils';
@@ -60,25 +61,24 @@ export type ButtonVariant = VariantProps<typeof buttonVariants>['variant'];
 export type ButtonSize = VariantProps<typeof buttonVariants>['size'];
 
 export interface ButtonProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'className'>,
+  extends Omit<PRButtonProps, 'className' | 'size' | 'variant' | 'iconOnly'>,
     VariantProps<typeof buttonVariants> {
   className?: string;
 }
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
+function Button({
   className,
   variant,
   size,
   iconOnly,
   ...props
-}, ref) => {
+}: ButtonProps) {
   return (
     <PRButton
-      ref={ref}
       className={cn(buttonVariants({ variant, size, iconOnly, className }))}
       {...props}
     />
   );
-});
+}
 
-Button.displayName = 'Button';
+export { Button };

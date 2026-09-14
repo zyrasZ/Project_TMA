@@ -1,6 +1,6 @@
-import React, { forwardRef } from 'react';
-
-import { FormField } from '../FormField';
+import React from 'react';
+import type { InputTextProps as PRInputTextProps } from '@primereact/types/primitive/inputtext';
+import { InputText as PRInputText } from 'primereact/inputtext';import { FormField } from '../FormField';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../../lib/utils';
 
@@ -25,7 +25,7 @@ export const inputVariants = cva(
 );
 
 export interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'className'>,
+  extends Omit<PRInputTextProps, 'className' | 'size'>,
     VariantProps<typeof inputVariants> {
   label?: string;
   error?: string;
@@ -40,7 +40,7 @@ export interface InputProps
   suffixNode?: React.ReactNode;
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(({
+function Input({
   label,
   error,
   required,
@@ -55,7 +55,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
   hasError,
   isDisabled,
   ...props
-}, ref) => {
+}: InputProps) {
   const isError = hasError || !!error;
   const isInputDisabled = isDisabled || props.disabled;
 
@@ -74,8 +74,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
           </div>
         )}
 
-        <input
-          ref={ref}
+        <PRInputText
           className={cn(
             'w-full h-full outline-none focus:outline-none focus:ring-0 px-3 flex-1 bg-transparent text-content-main placeholder:text-content-hint',
             iconLeft && '!pl-10',
@@ -118,6 +117,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
   }
 
   return inputComponent;
-});
+}
 
-Input.displayName = 'Input';
+export { Input };

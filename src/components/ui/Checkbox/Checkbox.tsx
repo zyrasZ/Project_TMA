@@ -1,7 +1,8 @@
-import { forwardRef } from 'react';
 import { Check } from '@phosphor-icons/react';
 import { cva } from 'class-variance-authority';
 import { cn } from '../../../lib/utils';
+import type { CheckboxRootProps } from '@primereact/types/primitive/checkbox';
+import { Checkbox as PrimeCheckbox } from 'primereact/checkbox';
 
 export const checkboxBoxVariants = cva(
   'peer w-full h-full appearance-none rounded-sm border transition-colors duration-200 outline-none flex items-center justify-center focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2',
@@ -42,7 +43,7 @@ export const checkboxBoxVariants = cva(
   }
 );
 
-export interface CheckboxProps {
+export interface CheckboxProps extends Omit<CheckboxRootProps, 'className' | 'onChange' | 'checked'> {
   label?: string;
   labelClassName?: string;
   className?: string;
@@ -54,7 +55,7 @@ export interface CheckboxProps {
   value?: string | number | readonly string[] | undefined;
 }
 
-export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
+export const Checkbox = ({
   label,
   labelClassName,
   className,
@@ -64,7 +65,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
   inputId,
   name,
   value,
-}, ref) => {
+  ...props
+}: CheckboxProps) => {
   const getCheckedState = () => {
     if (checked === true) return true;
     if (checked === false) return false;
@@ -76,24 +78,24 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
 
   return (
     <div className={cn('flex items-center gap-2', className)}>
-      <div className="w-5 h-5 flex items-center justify-center relative">
-        <input
-          type="checkbox"
-          ref={ref}
-          checked={checked === true}
-          disabled={isDisabled}
-          onChange={(e) => onChange?.({ checked: e.target.checked })}
-          id={inputId}
-          name={name}
-          value={value}
-          className="absolute inset-0 w-full h-full opacity-0 z-50 cursor-pointer peer"
-        />
-        <div className={cn(checkboxBoxVariants({ checkedState, isDisabled }))}>
-          <div className="!text-white text-xs z-10 flex items-center justify-center">
-            {checked === true && <Check weight="bold" size={12} />}
-          </div>
-        </div>
-      </div>
+      <PrimeCheckbox.Root
+        checked={checked === 'indeterminate' ? false : checked}
+        disabled={isDisabled}
+        onCheckedChange={(e: any) => onChange?.({ checked: e.checked })}
+        name={name}
+        value={value}
+        className="w-5 h-5 flex items-center justify-center relative"
+        inputClassName="absolute inset-0 w-full h-full opacity-0 z-50 cursor-pointer peer"
+        {...props}
+      >
+        <PrimeCheckbox.Box className={cn(checkboxBoxVariants({ checkedState, isDisabled }))}>
+          <PrimeCheckbox.Indicator>
+            <div className="!text-white text-xs z-10 flex items-center justify-center">
+              {checked === true && <Check weight="bold" size={12} />}
+            </div>
+          </PrimeCheckbox.Indicator>
+        </PrimeCheckbox.Box>
+      </PrimeCheckbox.Root>
       {label && (
         <label
           className={cn(
@@ -111,6 +113,6 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
       )}
     </div>
   );
-});
+};
 
 Checkbox.displayName = 'Checkbox';

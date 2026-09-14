@@ -1,4 +1,5 @@
-import React from 'react';
+
+import type { ToggleSwitchRootProps } from '@primereact/types/primitive/toggleswitch';
 import { ToggleSwitchRoot, ToggleSwitchControl, ToggleSwitchHandle } from 'primereact/toggleswitch';
 import { cva } from 'class-variance-authority';
 import { cn } from '../../../lib/utils';
@@ -33,7 +34,7 @@ export const toggleSliderVariants = cva(
   }
 );
 
-export interface ToggleProps {
+export interface ToggleProps extends Omit<ToggleSwitchRootProps, 'className' | 'onChange'> {
   label?: string;
   labelClassName?: string;
   className?: string;
@@ -41,7 +42,6 @@ export interface ToggleProps {
   onChange?: (e: { value: boolean }) => void;
   disabled?: boolean;
   inputId?: string;
-  ref?: React.Ref<HTMLDivElement>;
 }
 
 export const Toggle = ({
@@ -52,13 +52,13 @@ export const Toggle = ({
   onChange,
   disabled,
   inputId,
-  ref,
+  ...props
 }: ToggleProps) => {
   const isDisabled = !!disabled;
   const isChecked = !!checked;
 
   return (
-    <div className={cn('flex items-center gap-3', className)} ref={ref}>
+    <div className={cn('flex items-center gap-3', className)} {...props}>
       <ToggleSwitchRoot
         checked={isChecked}
         onCheckedChange={(e: any) => onChange?.({ value: e.checked })}

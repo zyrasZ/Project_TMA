@@ -1,6 +1,7 @@
-import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../../lib/utils';
+import { Badge as PrimeBadge } from 'primereact/badge';
+import type { BadgeProps as PRBadgeProps } from '@primereact/types/primitive/badge';
 
 export const badgeVariants = cva('', {
   variants: {
@@ -15,7 +16,7 @@ export const badgeVariants = cva('', {
   },
 });
 
-export interface BadgeProps extends VariantProps<typeof badgeVariants> {
+export interface BadgeProps extends Omit<PRBadgeProps, 'className' | 'value'>, VariantProps<typeof badgeVariants> {
   count?: number;
   max?: number;
   dot?: boolean;
@@ -29,21 +30,20 @@ export const Badge = ({
   dot = false,
   className,
   children,
+  ...props
 }: BadgeProps) => {
   const isDot = !!dot;
   const variant = isDot ? 'dot' : 'count';
 
   const renderBadge = () => {
     if (isDot) {
-      return <span className={cn(badgeVariants({ variant }), className)}></span>;
+      return <PrimeBadge className={cn(badgeVariants({ variant }), className)} {...props}></PrimeBadge>;
     }
 
     if (count !== undefined) {
       const displayCount = count > max ? `${max}+` : count;
       return (
-        <span className={cn(badgeVariants({ variant }), className)}>
-          {displayCount}
-        </span>
+        <PrimeBadge value={displayCount} className={cn(badgeVariants({ variant }), className)} {...props}></PrimeBadge>
       );
     }
 

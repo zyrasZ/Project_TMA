@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import type { SelectRootProps } from '@primereact/types/primitive/select';
 import { Select as PrimeSelect } from 'primereact/select';
 import { FormField } from '../FormField';
 import { CaretDown, Check } from '@phosphor-icons/react';
@@ -30,7 +31,7 @@ export interface SelectOption {
   value: any;
 }
 
-export interface SelectProps extends VariantProps<typeof selectVariants> {
+export interface SelectProps extends Omit<SelectRootProps, 'className' | 'value' | 'onChange'>, VariantProps<typeof selectVariants> {
   label?: string;
   error?: string;
   required?: boolean;
@@ -42,7 +43,6 @@ export interface SelectProps extends VariantProps<typeof selectVariants> {
   className?: string;
   wrapperClassName?: string;
   multiple?: boolean;
-  ref?: React.Ref<any>;
 }
 
 export const Select = ({
@@ -59,7 +59,7 @@ export const Select = ({
   multiple,
   hasError,
   isDisabled,
-  ref,
+  ...props
 }: SelectProps) => {
   const [internalValue, setInternalValue] = useState<any>(value || (multiple ? [] : null));
 
@@ -77,6 +77,7 @@ export const Select = ({
       onValueChange={handleChange}
       disabled={isSelectDisabled}
       className={cn(selectVariants({ hasError: isError, isDisabled: isSelectDisabled, className }))}
+      {...props}
     >
       <PrimeSelect.Trigger className="w-full h-full flex items-center justify-between px-3 cursor-pointer outline-none">
         <PrimeSelect.Value className="text-sm text-content-main truncate" placeholder={placeholder} />
@@ -114,7 +115,7 @@ export const Select = ({
     );
   }
 
-  return <div className={cn('w-full', wrapperClassName)} ref={ref as any}>{selectComponent}</div>;
+  return <div className={cn('w-full', wrapperClassName)}>{selectComponent}</div>;
 };
 
 Select.displayName = 'Select';

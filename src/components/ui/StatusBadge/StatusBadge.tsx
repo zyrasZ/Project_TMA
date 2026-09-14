@@ -1,6 +1,7 @@
-import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../../lib/utils';
+import { Tag as PrimeTag } from 'primereact/tag';
+import type { TagProps as PRTagProps } from '@primereact/types/primitive/tag';
 
 export const statusBadgeVariants = cva('inline-flex items-center gap-2', {
   variants: {},
@@ -28,7 +29,7 @@ export const statusBadgeIconVariants = cva('block w-2.5 h-2.5', {
 });
 
 export interface StatusBadgeProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>,
+  extends Omit<PRTagProps, 'className' | 'value'>,
     VariantProps<typeof statusBadgeIconVariants> {
   label: string;
 }
@@ -41,10 +42,10 @@ export const StatusBadge = ({
   ...props
 }: StatusBadgeProps) => {
   return (
-    <div className={cn(statusBadgeVariants(), className)} {...props}>
+    <PrimeTag className={cn(statusBadgeVariants(), className)} {...props}>
       <span className={cn(statusBadgeIconVariants({ color, shape }))}></span>
       <span className="text-sm font-medium text-content-main">{label}</span>
-    </div>
+    </PrimeTag>
   );
 };
 

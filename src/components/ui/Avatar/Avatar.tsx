@@ -1,4 +1,5 @@
-import React from 'react';
+
+import type { AvatarRootProps } from '@primereact/types/primitive/avatar';
 import { Avatar as PrimeAvatar } from 'primereact/avatar';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../../lib/utils';
@@ -24,13 +25,12 @@ export const avatarVariants = cva(
   }
 );
 
-export interface AvatarProps extends VariantProps<typeof avatarVariants> {
+export interface AvatarProps extends Omit<AvatarRootProps, 'className' | 'size' | 'shape'>, VariantProps<typeof avatarVariants> {
   image?: string;
   imageAlt?: string;
   icon?: string;
   label?: string;
   className?: string;
-  ref?: React.Ref<any>;
 }
 
 export const Avatar = ({
@@ -41,12 +41,10 @@ export const Avatar = ({
   icon,
   label,
   className,
-  ref,
   ...props
 }: AvatarProps) => {
   return (
     <PrimeAvatar.Root
-      ref={ref as any}
       className={cn(avatarVariants({ size, shape }), className)}
       {...props}
     >

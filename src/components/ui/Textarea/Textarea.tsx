@@ -1,4 +1,6 @@
-import { forwardRef } from 'react';
+
+import type { TextareaProps as PRTextareaProps } from '@primereact/types/primitive/textarea';
+import { Textarea as PRTextarea } from 'primereact/textarea';
 
 import { FormField } from '../FormField';
 import { cva, type VariantProps } from 'class-variance-authority';
@@ -25,7 +27,7 @@ export const textareaVariants = cva(
 );
 
 export interface TextareaProps
-  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'className'>,
+  extends Omit<PRTextareaProps, 'className'>,
     VariantProps<typeof textareaVariants> {
   label?: string;
   error?: string;
@@ -34,7 +36,7 @@ export interface TextareaProps
   className?: string;
 }
 
-export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({
+function Textarea({
   label,
   error,
   required,
@@ -43,13 +45,12 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({
   hasError,
   isDisabled,
   ...props
-}, ref) => {
+}: TextareaProps) {
   const isError = hasError || !!error;
   const isInputDisabled = isDisabled || props.disabled;
 
   const textareaComponent = (
-    <textarea
-      ref={ref}
+    <PRTextarea
       disabled={isInputDisabled}
       className={cn(textareaVariants({ hasError: isError, isDisabled: isInputDisabled, className }))}
       {...props}
@@ -65,6 +66,6 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({
   }
 
   return textareaComponent;
-});
+}
 
-Textarea.displayName = 'Textarea';
+export { Textarea };

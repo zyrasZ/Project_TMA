@@ -1,7 +1,6 @@
 import React from 'react';
 import { cn } from '../../../lib/utils';
-import { EnvelopeSimple, Phone, MapPin, ArrowUp } from '@phosphor-icons/react';
-import { Button } from '../Button';
+import { EnvelopeSimple, Phone, MapPin } from '@phosphor-icons/react';
 
 export interface ContactInfo {
   icon?: React.ReactNode;
@@ -44,9 +43,6 @@ export const Footer = React.forwardRef<HTMLElement, FooterProps>(
     },
     ref
   ) => {
-    const scrollToTop = () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
 
     return (
       <footer
@@ -88,19 +84,6 @@ export const Footer = React.forwardRef<HTMLElement, FooterProps>(
           </div>
         </div>
 
-        {/* Scroll to top button */}
-        {showScrollToTop && (
-          <Button
-            variant="primary"
-            size="lg"
-            iconOnly
-            className="absolute bottom-8 right-8 shadow-lg hover:shadow-xl transition-all"
-            onClick={scrollToTop}
-            aria-label="Scroll to top"
-          >
-            <ArrowUp size={24} weight="bold" />
-          </Button>
-        )}
       </footer>
     );
   }

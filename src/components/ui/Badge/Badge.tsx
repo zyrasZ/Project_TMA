@@ -1,8 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../../lib/utils';
 import { Badge as PrimeBadge } from 'primereact/badge';
-import type { BadgeProps as PRBadgeProps } from '@primereact/types/primitive/badge';
-
+import React, { ComponentProps } from 'react';
 export const badgeVariants = cva('', {
   variants: {
     variant: {
@@ -16,7 +15,7 @@ export const badgeVariants = cva('', {
   },
 });
 
-export interface BadgeProps extends Omit<PRBadgeProps, 'className' | 'value'>, VariantProps<typeof badgeVariants> {
+export interface BadgeProps extends Omit<ComponentProps<typeof PrimeBadge>, 'className' | 'value'>, VariantProps<typeof badgeVariants> {
   count?: number;
   max?: number;
   dot?: boolean;

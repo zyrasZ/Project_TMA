@@ -1,4 +1,3 @@
-
 import type { ToggleSwitchRootProps } from '@primereact/types/primitive/toggleswitch';
 import { ToggleSwitchRoot, ToggleSwitchControl, ToggleSwitchHandle } from 'primereact/toggleswitch';
 import { cva } from 'class-variance-authority';

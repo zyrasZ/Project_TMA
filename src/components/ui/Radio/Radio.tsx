@@ -1,4 +1,3 @@
-
 import type { RadioButtonRootProps } from '@primereact/types/primitive/radiobutton';
 import { RadioButton as PrimeRadioButton } from 'primereact/radiobutton';
 import { cva } from 'class-variance-authority';

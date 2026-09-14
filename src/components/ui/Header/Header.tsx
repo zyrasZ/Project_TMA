@@ -15,7 +15,7 @@ export const Header = React.forwardRef<HTMLElement, HeaderProps>(
       <header
         ref={ref}
         className={cn(
-          'sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-border',
+          'fixed top-0 z-50 w-full bg-transparent transition-all duration-300',
           className
         )}
         {...props}
@@ -49,7 +49,11 @@ export const Header = React.forwardRef<HTMLElement, HeaderProps>(
           {/* Right Actions */}
           <div className="flex-shrink-0 flex items-center gap-4">
             {rightElement || (
-              <Button variant="primary" size="md">
+              <Button 
+                variant="primary" 
+                className="h-[40px] px-5 !text-white font-semibold transition-colors duration-300 ease-out hover:bg-turquoise-700"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              >
                 Đăng nhập
               </Button>
             )}

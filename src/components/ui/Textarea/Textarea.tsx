@@ -1,4 +1,3 @@
-
 import type { TextareaProps as PRTextareaProps } from '@primereact/types/primitive/textarea';
 import { Textarea as PRTextarea } from 'primereact/textarea';
 

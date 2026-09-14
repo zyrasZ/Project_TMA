@@ -1,4 +1,3 @@
-
 import type { AvatarRootProps } from '@primereact/types/primitive/avatar';
 import { Avatar as PrimeAvatar } from 'primereact/avatar';
 import { cva, type VariantProps } from 'class-variance-authority';

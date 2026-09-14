@@ -1,6 +1,10 @@
-import React, { ReactNode } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from '../../../lib/utils';
+import { ReactNode } from 'react';
 
-export interface FormFieldProps {
+export const formFieldVariants = cva('flex flex-col gap-1.5 w-full');
+
+export interface FormFieldProps extends VariantProps<typeof formFieldVariants> {
   label?: string;
   required?: boolean;
   error?: string;
@@ -8,15 +12,15 @@ export interface FormFieldProps {
   className?: string;
 }
 
-export const FormField: React.FC<FormFieldProps> = ({
+export const FormField = ({
   label,
   required,
   error,
   children,
-  className = '',
-}) => {
+  className,
+}: FormFieldProps) => {
   return (
-    <div className={`flex flex-col gap-1.5 w-full ${className}`}>
+    <div className={cn(formFieldVariants(), className)}>
       {label && (
         <label className="text-sm font-medium text-content-main flex items-center gap-1">
           {label}
@@ -28,3 +32,5 @@ export const FormField: React.FC<FormFieldProps> = ({
     </div>
   );
 };
+
+FormField.displayName = 'FormField';

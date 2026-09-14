@@ -1,8 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../../lib/utils';
 import { Tag as PrimeTag } from 'primereact/tag';
-import type { TagProps as PRTagProps } from '@primereact/types/primitive/tag';
-
+import type { ComponentProps } from 'react';
 export const statusBadgeVariants = cva('inline-flex items-center gap-2', {
   variants: {},
 });
@@ -29,9 +28,10 @@ export const statusBadgeIconVariants = cva('block w-2.5 h-2.5', {
 });
 
 export interface StatusBadgeProps
-  extends Omit<PRTagProps, 'className' | 'value'>,
+  extends Omit<ComponentProps<typeof PrimeTag>, 'className' | 'value'>,
     VariantProps<typeof statusBadgeIconVariants> {
   label: string;
+  className?: string;
 }
 
 export const StatusBadge = ({

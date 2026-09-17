@@ -4,6 +4,9 @@ import { App } from './app/App';
 import './styles/globals.css';
 import './styles/variables.css';
 
+// Initialize i18n
+import './i18n/config';
+
 // PrimeReact styles
 import 'primeicons/primeicons.css';
 

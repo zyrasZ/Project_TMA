@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { useUsers } from '../../hooks/useUsers';
-import { useCreateUser } from '../../hooks/useCreateUser';
-import { useDeleteUser } from '../../hooks/useDeleteUser';
-import { useUpdateUser } from '../../hooks/useUpdateUser';
+import React, { useState } from 'react';
+import { useUsers } from './hooks/useUsers';
+import { useCreateUser } from './hooks/useCreateUser';
+import { useDeleteUser } from './hooks/useDeleteUser';
+import { useUpdateUser } from './hooks/useUpdateUser';
 
-export const UsersPage = () => {
+const App: React.FC = () => {
   const [search, setSearch] = useState('');
   
   const { data: users, isLoading, isError, error } = useUsers({ search });
@@ -93,3 +93,5 @@ export const UsersPage = () => {
     </div>
   );
 };
+
+export default App;

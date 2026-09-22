@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
+  
   const mockups = [
     '/mockups/mockup-1.png',
     '/mockups/mockup-2.png',
@@ -45,7 +48,7 @@ export const HeroSection = () => {
           <button 
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => navigate('/login')}
             className="text-white text-[16px] leading-[32px] font-semibold transition-colors duration-300 ease-out"
             style={{
               width: '173px',

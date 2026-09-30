@@ -51,7 +51,9 @@ export const Avatar = ({
         <PrimeAvatar.Image src={image} alt={imageAlt} className="w-full h-full object-cover" />
       ) : (
         <PrimeAvatar.Fallback className="flex items-center justify-center w-full h-full">
-          {icon ? <span className={cn(icon, 'text-content-sub text-[1.2em]')} /> : <span className="font-medium">{label}</span>}
+          {props.children ? props.children : (
+            icon ? <span className={cn(icon, 'text-content-sub text-[1.2em]')} /> : <span className="font-medium">{label}</span>
+          )}
         </PrimeAvatar.Fallback>
       )}
     </PrimeAvatar.Root>

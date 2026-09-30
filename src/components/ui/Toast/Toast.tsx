@@ -17,7 +17,7 @@ function ToasterRegion({ className, ...props }: ToasterRegionProps) {
     return (
         <PRToaster.Region
             className={cn(
-                `fixed w-auto z-[9999] pointer-events-none
+                `group fixed w-auto z-[9999] pointer-events-none
                 data-[position=bottom-right]:right-4 data-[position=bottom-right]:bottom-4
                 data-[position=bottom-center]:bottom-4 data-[position=bottom-center]:left-1/2 data-[position=bottom-center]:-translate-x-1/2
                 data-[position=bottom-left]:left-4 data-[position=bottom-left]:bottom-4
@@ -40,12 +40,12 @@ function ToastRoot({ className, ...props }: ToastRootProps) {
                 bg-grey-neutral-800 shadow-xl`,
 
                 // position based on parent region
-                `in-data-[position=bottom-right]:[--px-raise-factor:-1] in-data-[position=bottom-right]:bottom-0 in-data-[position=bottom-right]:right-0
-                in-data-[position=bottom-center]:[--px-raise-factor:-1] in-data-[position=bottom-center]:bottom-0
-                in-data-[position=bottom-left]:[--px-raise-factor:-1] in-data-[position=bottom-left]:bottom-0 in-data-[position=bottom-left]:left-0
-                in-data-[position=top-right]:[--px-raise-factor:1] in-data-[position=top-right]:top-0 in-data-[position=top-right]:right-0
-                in-data-[position=top-center]:[--px-raise-factor:1] in-data-[position=top-center]:top-0
-                in-data-[position=top-left]:[--px-raise-factor:1] in-data-[position=top-left]:top-0 in-data-[position=top-left]:left-0`,
+                `group-data-[position=bottom-right]:[--px-raise-factor:-1] group-data-[position=bottom-right]:bottom-0 group-data-[position=bottom-right]:right-0
+                group-data-[position=bottom-center]:[--px-raise-factor:-1] group-data-[position=bottom-center]:bottom-0
+                group-data-[position=bottom-left]:[--px-raise-factor:-1] group-data-[position=bottom-left]:bottom-0 group-data-[position=bottom-left]:left-0
+                group-data-[position=top-right]:[--px-raise-factor:1] group-data-[position=top-right]:top-0 group-data-[position=top-right]:right-0
+                group-data-[position=top-center]:[--px-raise-factor:1] group-data-[position=top-center]:top-0
+                group-data-[position=top-left]:[--px-raise-factor:1] group-data-[position=top-left]:top-0 group-data-[position=top-left]:left-0`,
 
                 // css custom properties
                 `[--px-offset-y:calc(var(--px-swipe-amount-y)+(var(--px-toast-offset)+var(--px-toast-index)*var(--px-gap))*var(--px-raise-factor))]
@@ -53,62 +53,62 @@ function ToastRoot({ className, ...props }: ToastRootProps) {
 
                 // base animation state
                 `opacity-0
-                z-(--px-toast-z-index)
-                transform-[translateX(var(--px-offset-x))_translateY(calc(100%*var(--px-raise-factor)*-1))]
+                z-[var(--px-toast-z-index)]
+                [transform:translateX(var(--px-offset-x))_translateY(calc(100%*var(--px-raise-factor)*-1))]
                 [transition:transform_0.3s,opacity_0.3s,height_0.3s]`,
 
                 // mounted
-                `data-mounted:opacity-100
-                data-mounted:transform-[translateY(0)]`,
+                `data-[mounted]:opacity-100
+                data-[mounted]:[transform:translateY(0)]`,
 
                 // collapsed stack (not expanded, not front)
-                `not-data-expanded:not-data-front:overflow-hidden
-                not-data-expanded:not-data-front:h-(--px-front-toast-height)
-                not-data-expanded:not-data-front:transform-[translateX(var(--px-offset-x))_translateY(calc(var(--px-raise-factor)*var(--px-toast-index)*var(--px-gap)))_scale(calc(var(--px-toast-index)*-0.05+1))]`,
+                `[&:not([data-expanded])]:[&:not([data-front])]:overflow-hidden
+                [&:not([data-expanded])]:[&:not([data-front])]:h-[var(--px-front-toast-height)]
+                [&:not([data-expanded])]:[&:not([data-front])]:[transform:translateX(var(--px-offset-x))_translateY(calc(var(--px-raise-factor)*var(--px-toast-index)*var(--px-gap)))_scale(calc(var(--px-toast-index)*-0.05+1))]`,
 
                 // expanded
-                `data-mounted:data-expanded:h-(--px-initial-height)
-                data-mounted:data-expanded:transform-[translateX(var(--px-offset-x))_translateY(var(--px-offset-y))]`,
+                `data-[mounted]:data-[expanded]:h-[var(--px-initial-height)]
+                data-[mounted]:data-[expanded]:[transform:translateX(var(--px-offset-x))_translateY(var(--px-offset-y))]`,
 
                 // expanded gap area
-                `data-expanded:after:content-[''] data-expanded:after:absolute data-expanded:after:left-0 data-expanded:after:w-full data-expanded:after:bottom-full data-expanded:after:h-[calc(var(--px-gap)+1px)]`,
+                `data-[expanded]:after:content-[''] data-[expanded]:after:absolute data-[expanded]:after:left-0 data-[expanded]:after:w-full data-[expanded]:after:bottom-full data-[expanded]:after:h-[calc(var(--px-gap)+1px)]`,
 
                 // not visible (! to ensure it overrides data-mounted)
-                `not-data-visible:opacity-0! not-data-visible:pointer-events-none! not-data-visible:select-none!`,
+                `[&:not([data-visible])]:!opacity-0 [&:not([data-visible])]:!pointer-events-none [&:not([data-visible])]:!select-none`,
 
                 // removed: front toast exit
-                `data-removed:data-front:not-data-swipe-out:opacity-0
-                data-removed:data-front:not-data-swipe-out:transform-[translateX(var(--px-offset-x))_translateY(calc(var(--px-raise-factor)*-100%))]`,
+                `data-[removed]:data-[front]:[&:not([data-swipe-out])]:opacity-0
+                data-[removed]:data-[front]:[&:not([data-swipe-out])]:[transform:translateX(var(--px-offset-x))_translateY(calc(var(--px-raise-factor)*-100%))]`,
 
                 // removed: non-front expanded exit
-                `data-removed:not-data-front:not-data-swipe-out:data-expanded:opacity-0
-                data-removed:not-data-front:not-data-swipe-out:data-expanded:transform-[translateX(var(--px-offset-x))_translateY(calc(var(--px-raise-factor)*var(--px-offset-y)*0.4))]`,
+                `data-[removed]:[&:not([data-front])]:[&:not([data-swipe-out])]:data-[expanded]:opacity-0
+                data-[removed]:[&:not([data-front])]:[&:not([data-swipe-out])]:data-[expanded]:[transform:translateX(var(--px-offset-x))_translateY(calc(var(--px-raise-factor)*var(--px-offset-y)*0.4))]`,
 
                 // removed: non-front collapsed exit
-                `data-removed:not-data-front:not-data-swipe-out:not-data-expanded:opacity-0
-                data-removed:not-data-front:not-data-swipe-out:not-data-expanded:transform-[translateX(var(--px-offset-x))_translateY(calc(var(--px-raise-factor)*40%*-1))]
-                data-removed:not-data-front:not-data-swipe-out:not-data-expanded:[transition:transform_500ms,opacity_200ms]`,
+                `data-[removed]:[&:not([data-front])]:[&:not([data-swipe-out])]:[&:not([data-expanded])]:opacity-0
+                data-[removed]:[&:not([data-front])]:[&:not([data-swipe-out])]:[&:not([data-expanded])]:[transform:translateX(var(--px-offset-x))_translateY(calc(var(--px-raise-factor)*40%*-1))]
+                data-[removed]:[&:not([data-front])]:[&:not([data-swipe-out])]:[&:not([data-expanded])]:[transition:transform_500ms,opacity_200ms]`,
 
                 // swiping
-                `data-swiping:[transition:none]!
-                data-swiping:transform-[translateX(var(--px-offset-x))_translateY(var(--px-offset-y))]!`,
+                `data-[swiping]:![transition:none]
+                data-[swiping]:![transform:translateX(var(--px-offset-x))_translateY(var(--px-offset-y))]`,
 
                 // swiped
-                `data-swiped:select-none`,
+                `data-[swiped]:select-none`,
 
                 // swipe-out directions
-                `data-swipe-out:data-[swipe-direction=up]:opacity-0
-                data-swipe-out:data-[swipe-direction=up]:transform-[translateX(var(--px-offset-x))_translateY(calc(var(--px-offset-y)-100%))]!`,
+                `data-[swipe-out]:data-[swipe-direction=up]:opacity-0
+                data-[swipe-out]:data-[swipe-direction=up]:![transform:translateX(var(--px-offset-x))_translateY(calc(var(--px-offset-y)-100%))]`,
 
-                `data-swipe-out:data-[swipe-direction=down]:opacity-0
-                data-swipe-out:data-[swipe-direction=down]:transform-[translateX(var(--px-offset-x))_translateY(calc(var(--px-offset-y)+100%))]!`,
+                `data-[swipe-out]:data-[swipe-direction=down]:opacity-0
+                data-[swipe-out]:data-[swipe-direction=down]:![transform:translateX(var(--px-offset-x))_translateY(calc(var(--px-offset-y)+100%))]`,
 
-                `data-swipe-out:data-[swipe-direction=left]:opacity-0
-                data-swipe-out:data-[swipe-direction=left]:transform-[translateX(calc(var(--px-offset-x)-100%))_translateY(var(--px-offset-y))]!`,
+                `data-[swipe-out]:data-[swipe-direction=left]:opacity-0
+                data-[swipe-out]:data-[swipe-direction=left]:![transform:translateX(calc(var(--px-offset-x)-100%))_translateY(var(--px-offset-y))]`,
 
-                `data-swipe-out:data-[swipe-direction=right]:opacity-0
-                data-swipe-out:data-[swipe-direction=right]:transform-[translateX(calc(var(--px-offset-x)+100%))_translateY(var(--px-offset-y))]!
-                data-swipe-out:data-[swipe-direction=right]:[transition:transform_500ms,opacity_200ms]`,
+                `data-[swipe-out]:data-[swipe-direction=right]:opacity-0
+                data-[swipe-out]:data-[swipe-direction=right]:![transform:translateX(calc(var(--px-offset-x)+100%))_translateY(var(--px-offset-y))]
+                data-[swipe-out]:data-[swipe-direction=right]:[transition:transform_500ms,opacity_200ms]`,
 
                 className
             )}

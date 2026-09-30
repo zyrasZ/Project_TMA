@@ -4,7 +4,7 @@ import { NavigationMenu as PRNavigationMenu } from 'primereact/navigationmenu';
 import { Menu as PRMenu } from 'primereact/menu';
 import { User, CaretDown } from '@phosphor-icons/react';
 import { cn } from '../../../lib/utils';
-import { Avatar, AvatarFallback, AvatarImage } from '../../ui/Avatar';
+import { Avatar } from '../../ui/Avatar';
 import type { RootState } from '../../../store';
 import { logout } from '../../../store/slices/authSlice';
 import { useTranslation } from 'react-i18next';
@@ -133,11 +133,12 @@ export const AdminNavbar = () => {
         <div className="flex items-center space-x-4">
           <PRMenu.Root>
             <PRMenu.Trigger className="flex items-center focus:outline-none cursor-pointer border-none bg-transparent p-0 m-0 rounded-full">
-              <Avatar shape="circle" className="h-8 w-8 border border-border hover:opacity-80 transition-opacity">
-                 {user?.avatar && <AvatarImage src={user.avatar} alt="User Avatar" />}
-                 <AvatarFallback className="bg-grey-neutral-60">
-                   <User className="h-5 w-5 text-content-sub" weight="fill" />
-                 </AvatarFallback>
+              <Avatar 
+                shape="circle" 
+                className="h-8 w-8 border border-border hover:opacity-80 transition-opacity bg-grey-neutral-60" 
+                image={user?.avatar}
+              >
+                <User className="h-5 w-5 text-content-sub" weight="fill" />
               </Avatar>
             </PRMenu.Trigger>
             <PRMenu.Portal>

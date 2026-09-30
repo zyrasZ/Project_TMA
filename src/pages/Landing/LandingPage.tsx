@@ -5,8 +5,10 @@ import { ContactSection } from './components/ContactSection';
 import { FooterSection } from './components/FooterSection';
 import { Header } from '../../components/ui/Header';
 import { ArrowUp } from '@phosphor-icons/react';
+import { useTranslation } from 'react-i18next';
 
 export const LandingPage = () => {
+  const { t } = useTranslation('common');
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -15,10 +17,10 @@ export const LandingPage = () => {
     <div className="min-h-screen bg-surface relative">
       <Header
         navLinks={[
-          { label: 'Tính năng', href: '#features' },
-          { label: 'Bảng giá', href: '#pricing' },
-          { label: 'Liên hệ', href: '#contact' },
-          { label: 'Hướng dẫn sử dụng', href: '#guide' },
+          { label: t('landing.nav.features'), href: '#features' },
+          { label: t('landing.nav.pricing'), href: '#pricing' },
+          { label: t('landing.nav.contact'), href: '#contact' },
+          { label: t('landing.nav.guide'), href: '#guide' },
         ]}
       />
       <HeroSection />

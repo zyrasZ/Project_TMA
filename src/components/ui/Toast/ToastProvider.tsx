@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState, ReactNode, useCallback } from 'react';
-import { CustomToastProps, CustomSnackbarProps, DarkToastTemplate, LightSnackbarTemplate } from './ToastTemplates';
+import React, { createContext, useContext, ReactNode } from 'react';
+import { CustomToastProps, CustomSnackbarProps } from './ToastTemplates';
+import { toast, Toaster } from './Toast';
 
 interface ToastContextType {
   showToast: (props: CustomToastProps) => void;
@@ -17,84 +18,41 @@ export const useAppToast = () => {
   return context;
 };
 
-interface ToastItem extends CustomToastProps {
-  id: string;
-}
-
-interface SnackbarItem extends CustomSnackbarProps {
-  id: string;
-}
-
 export const ToastProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [toasts, setToasts] = useState<ToastItem[]>([]);
-  const [snackbars, setSnackbars] = useState<SnackbarItem[]>([]);
-
-  const removeToast = useCallback((id: string) => {
-    setToasts((prev) => prev.filter((t) => t.id !== id));
-  }, []);
-
-  const removeSnackbar = useCallback((id: string) => {
-    setSnackbars((prev) => prev.filter((s) => s.id !== id));
-  }, []);
-
-  const showToast = useCallback((props: CustomToastProps) => {
-    const id = Math.random().toString(36).substring(7);
-    setToasts((prev) => [...prev, { ...props, id }]);
+  const showToast = (props: CustomToastProps) => {
+    const toastProps = {
+      title: props.title,
+      description: props.message,
+      duration: 3000
+    };
     
-    setTimeout(() => {
-      removeToast(id);
-    }, 3000);
-  }, [removeToast]);
+    if (props.severity === 'success') {
+      toast.success(toastProps);
+    } else if (props.severity === 'error') {
+      toast.error(toastProps);
+    } else if (props.severity === 'warning') {
+      toast.warn(toastProps);
+    } else {
+      toast.info(toastProps);
+    }
+  };
 
-  const showSnackbar = useCallback((props: CustomSnackbarProps) => {
-    const id = Math.random().toString(36).substring(7);
-    setSnackbars((prev) => [...prev, { ...props, id }]);
-    
-    setTimeout(() => {
-      removeSnackbar(id);
-    }, 4000);
-  }, [removeSnackbar]);
+  const showSnackbar = (props: CustomSnackbarProps) => {
+    toast.info({ 
+      description: props.message, 
+      ...(props.actionText ? { action: { children: props.actionText } as React.ButtonHTMLAttributes<HTMLButtonElement> } : {}),
+      duration: 4000 
+    });
+  };
 
-  const clear = useCallback(() => {
-    setToasts([]);
-    setSnackbars([]);
-  }, []);
+  const clear = () => {
+    toast.dismiss();
+  };
 
   return (
     <ToastContext.Provider value={{ showToast, showSnackbar, clear }}>
       {children}
-      
-      {/* Container for Toasts (Top Right) */}
-      <div className="fixed top-4 right-4 z-[9999] flex flex-col gap-4 pointer-events-none">
-        {toasts.map((toast) => (
-          <DarkToastTemplate 
-            key={toast.id} 
-            {...toast} 
-            onClose={() => {
-              removeToast(toast.id);
-              toast.onClose?.();
-            }} 
-          />
-        ))}
-      </div>
-
-      {/* Container for Snackbars (Bottom Center) */}
-      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[9999] flex flex-col gap-4 pointer-events-none">
-        {snackbars.map((snackbar) => (
-          <LightSnackbarTemplate 
-            key={snackbar.id} 
-            {...snackbar} 
-            onClose={() => {
-              removeSnackbar(snackbar.id);
-              snackbar.onClose?.();
-            }}
-            onAction={() => {
-              snackbar.onAction?.();
-              removeSnackbar(snackbar.id);
-            }}
-          />
-        ))}
-      </div>
+      <Toaster />
     </ToastContext.Provider>
   );
 };

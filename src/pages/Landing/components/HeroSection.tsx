@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export const HeroSection = () => {
+  const { t } = useTranslation('common');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
@@ -40,10 +42,10 @@ export const HeroSection = () => {
       <div className="flex-1 flex flex-col items-center pt-[168px] px-4 md:px-10 text-center z-10 w-full max-w-[1728px] mx-auto">
         <div className="flex flex-col items-center w-full max-w-[1408px]">
           <h1 className="text-3xl md:text-[4vw] 2xl:text-[72px] font-bold text-content-main leading-tight 2xl:leading-[90px] mb-4 tracking-tight md:whitespace-nowrap">
-            Hệ thống quản lý trạm xăng dầu <span className="text-primary">IGAS</span>
+            {t('landing.hero.titlePart1')} <span className="text-primary">{t('landing.hero.titlePart2')}</span>
           </h1>
           <p className="text-lg md:text-xl text-content-sub max-w-2xl mb-8">
-            Giải pháp hoàn hảo cho trạm xăng dầu của bạn. Giám sát mọi hoạt động bơm xăng dầu và xuất hoá đơn điện tử.
+            {t('landing.hero.subtitle')}
           </p>
           <button 
             onMouseEnter={() => setIsHovered(true)}
@@ -62,13 +64,13 @@ export const HeroSection = () => {
               background: `linear-gradient(${isHovered ? '#0f8a8a' : '#18A0A0'}, ${isHovered ? '#0f8a8a' : '#18A0A0'}) padding-box, linear-gradient(97.94deg, rgba(255, 255, 255, 0.7) -2.27%, rgba(255, 255, 255, 0.3) 105.46%) border-box`,
               border: '6px solid transparent',
               backdropFilter: 'blur(10px)',
-              transition: 'background 0.3s ease-out'
-            }}
-          >
-            Đăng nhập
-          </button>
-        </div>
+            transition: 'background 0.3s ease-out'
+          }}
+        >
+          {t('landing.hero.loginBtn')}
+        </button>
       </div>
+    </div>
 
       {/* Mockup Dashboard Slider */}
       <div className="relative w-full max-w-6xl mx-auto mt-16 mb-24 px-4 z-10 flex flex-col items-center">

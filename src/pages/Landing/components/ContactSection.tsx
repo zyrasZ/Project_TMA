@@ -7,8 +7,11 @@ import { Textarea } from '../../../components/ui/Textarea';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { contactSchema, type ContactFormData } from './contactSchema';
+import { useTranslation } from 'react-i18next';
 
 export const ContactSection = () => {
+  const { t } = useTranslation('common');
+  
   const { control, handleSubmit, formState: { errors } } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
@@ -24,14 +27,14 @@ export const ContactSection = () => {
   const onSubmit = (data: ContactFormData) => {
     console.log('Form data:', data);
     // TODO: Send data to API
-    alert('Đã nhận thông tin liên hệ: ' + JSON.stringify(data, null, 2));
+    alert(t('landing.contact.alert') + JSON.stringify(data, null, 2));
   };
 
   return (
     <section id="contact" className="py-24 px-4 md:px-10 bg-[#F4F7F7]">
       <div className="max-w-[784px] mx-auto flex flex-col items-center">
         <h2 className="text-3xl md:text-[40px] font-bold text-content-main mb-12 text-center">
-          Liên hệ tư vấn
+          {t('landing.contact.title')}
         </h2>
 
         <Card className="shadow-lg border-transparent rounded-2xl w-full bg-white">
@@ -41,8 +44,8 @@ export const ContactSection = () => {
                 name="name"
                 control={control}
                 render={({ field }) => (
-                  <FormField label="Họ tên" required error={errors.name?.message}>
-                    <Input {...field} placeholder="Nhập họ tên của bạn" className="h-10" hasError={!!errors.name} />
+                  <FormField label={t('landing.contact.nameLabel')} required error={errors.name?.message}>
+                    <Input {...field} placeholder={t('landing.contact.namePlaceholder')} className="h-10" hasError={!!errors.name} />
                   </FormField>
                 )}
               />
@@ -51,8 +54,8 @@ export const ContactSection = () => {
                 name="email"
                 control={control}
                 render={({ field }) => (
-                  <FormField label="Email" required error={errors.email?.message}>
-                    <Input {...field} placeholder="Nhập email của bạn" type="email" className="h-10" hasError={!!errors.email} />
+                  <FormField label={t('landing.contact.emailLabel')} required error={errors.email?.message}>
+                    <Input {...field} placeholder={t('landing.contact.emailPlaceholder')} type="email" className="h-10" hasError={!!errors.email} />
                   </FormField>
                 )}
               />
@@ -61,8 +64,8 @@ export const ContactSection = () => {
                 name="phone"
                 control={control}
                 render={({ field }) => (
-                  <FormField label="Điện thoại" required error={errors.phone?.message}>
-                    <Input {...field} placeholder="Nhập điện thoại của bạn" type="tel" className="h-10" hasError={!!errors.phone} />
+                  <FormField label={t('landing.contact.phoneLabel')} required error={errors.phone?.message}>
+                    <Input {...field} placeholder={t('landing.contact.phonePlaceholder')} type="tel" className="h-10" hasError={!!errors.phone} />
                   </FormField>
                 )}
               />
@@ -71,8 +74,8 @@ export const ContactSection = () => {
                 name="company"
                 control={control}
                 render={({ field }) => (
-                  <FormField label="Tên công ty" required error={errors.company?.message}>
-                    <Input {...field} placeholder="Nhập tên công ty của bạn" className="h-10" hasError={!!errors.company} />
+                  <FormField label={t('landing.contact.companyLabel')} required error={errors.company?.message}>
+                    <Input {...field} placeholder={t('landing.contact.companyPlaceholder')} className="h-10" hasError={!!errors.company} />
                   </FormField>
                 )}
               />
@@ -81,7 +84,7 @@ export const ContactSection = () => {
                 name="package"
                 control={control}
                 render={({ field }) => (
-                  <FormField label="Bạn đang quan tâm gói sản phẩm nào" error={errors.package?.message}>
+                  <FormField label={t('landing.contact.packageLabel')} error={errors.package?.message}>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-1">
                       {['basic', 'standard', 'advanced'].map((pkg) => (
                         <label 
@@ -97,7 +100,7 @@ export const ContactSection = () => {
                             onChange={() => field.onChange(pkg)} 
                           />
                           <span className="text-sm font-medium text-content-main">
-                            {pkg === 'basic' ? 'Cơ bản' : pkg === 'standard' ? 'Tiêu chuẩn' : 'Nâng cao'}
+                            {pkg === 'basic' ? t('landing.contact.packageBasic') : pkg === 'standard' ? t('landing.contact.packageStandard') : t('landing.contact.packageAdvanced')}
                           </span>
                         </label>
                       ))}
@@ -110,11 +113,11 @@ export const ContactSection = () => {
                 name="message"
                 control={control}
                 render={({ field }) => (
-                  <FormField label="Bạn mong muốn được tư vấn về vấn đề gì?" required error={errors.message?.message}>
+                  <FormField label={t('landing.contact.messageLabel')} required error={errors.message?.message}>
                     <Textarea 
                       {...field}
                       className="min-h-[120px]"
-                      placeholder="Tôi muốn được tư vấn về..."
+                      placeholder={t('landing.contact.messagePlaceholder')}
                       hasError={!!errors.message}
                     />
                   </FormField>
@@ -122,7 +125,7 @@ export const ContactSection = () => {
               />
 
               <Button type="submit" variant="primary" className="w-full h-10 rounded-md mt-2">
-                Gửi
+                {t('landing.contact.submit')}
               </Button>
             </form>
           </CardBody>

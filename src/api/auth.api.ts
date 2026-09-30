@@ -16,7 +16,7 @@ export const authApi = {
     }
     
     if (credentials.password !== 'password123') {
-      throw new Error('Mật khẩu không đúng. Vui lòng nhập "password123".');
+      throw new Error('Mật khẩu không đúng.');
     }
 
     // Giả lập tạo token

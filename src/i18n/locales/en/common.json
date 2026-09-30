@@ -1,4 +1,191 @@
 {
   "greeting": "Hello",
-  "contact": "Contact Us"
+  "contact": "Contact us",
+  "companyManagement": {
+    "title": "Company Management",
+    "addCompany": "Add Company",
+    "search": "Search",
+    "searchPlaceholder": "Search",
+    "status": "Status",
+    "statusPlaceholder": "Select status",
+    "statusAll": "All",
+    "statusActive": "Active",
+    "statusInactive": "Inactive",
+    "resetFilter": "Reset filter",
+    "table": {
+      "id": "ID",
+      "company": "Company",
+      "username": "Username",
+      "taxCode": "Tax Code",
+      "phone": "Phone",
+      "email": "Email",
+      "status": "Status",
+      "actions": "Actions",
+      "empty": "No companies found.",
+      "accessCompanyPage": "Access Company Page",
+      "viewInfo": "View Info",
+      "updateInfo": "Update Info",
+      "lockCompany": "Lock Company",
+      "unlockCompany": "Unlock Company",
+      "resetPassword": "Reset Password"
+    },
+    "itemName": "companies",
+    "modal": {
+      "companyInfo": "Company Information",
+      "close": "Close",
+      "addCompany": "Add New Company",
+      "cancel": "Cancel",
+      "save": "Save",
+      "companyName": "Company Name",
+      "companyNamePlaceholder": "Enter company name",
+      "taxCodePlaceholder": "Enter tax code",
+      "phonePlaceholder": "Enter phone number",
+      "emailPlaceholder": "Enter email",
+      "usernamePlaceholder": "Enter username",
+      "updateCompany": "Update Company",
+      "lockTitle": "Lock Company",
+      "unlockTitle": "Unlock Company",
+      "confirm": "Confirm",
+      "lockConfirmMsg": "Are you sure you want to lock this company?",
+      "unlockConfirmMsg": "Are you sure you want to unlock this company?",
+      "lockWarning": "Once locked, this company and its associates will not be able to access the system.",
+      "unlockWarning": "Once unlocked, this company and its associates will be able to access the system again.",
+      "resetPasswordTitle": "Reset Password",
+      "resetPasswordConfirmMsg": "Are you sure you want to reset the password for this company?",
+      "resetPasswordWarning1": "The company's password will be reset to its registered phone number: "
+    },
+    "toast": {
+      "success": "Success",
+      "addSuccess": "New company added successfully",
+      "updateSuccess": "Company information updated successfully",
+      "lockSuccess": "Company locked successfully",
+      "unlockSuccess": "Company unlocked successfully",
+      "resetPasswordSuccess": "Password reset successfully. New password is: {{password}}"
+    },
+    "validation": {
+      "invalidName": "Invalid company name. Please try again.",
+      "invalidTaxCode": "Invalid tax code. Please try again.",
+      "invalidPhone": "Invalid phone number. Please try again.",
+      "invalidEmail": "Invalid email. Please try again.",
+      "invalidUsername": "Invalid username. Please try again.",
+      "usernameExists": "Username is already in use. Please choose another."
+    }
+  },
+  "navbar": {
+    "companies": "Company Management",
+    "devices": "Device Management",
+    "logs": "Automation Logs",
+    "tools": "Tools",
+    "option1": "Option 1",
+    "option2": "Option 2",
+    "myAccount": "My Account",
+    "logout": "Logout"
+  },
+  "login": {
+    "title": "Login",
+    "emailLabel": "Username",
+    "emailPlaceholder": "Enter your username",
+    "emailRequired": "Please enter your email",
+    "emailInvalid": "Invalid email format",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "passwordRequired": "Please enter your password",
+    "forgotPassword": "Forgot password?",
+    "submit": "Login",
+    "submitting": "Processing...",
+    "illustrationText": "Manage and look up pump station data, issue invoices automatically and manually"
+  },
+  "landing": {
+    "nav": {
+      "features": "Features",
+      "pricing": "Pricing",
+      "contact": "Contact",
+      "guide": "User Guide"
+    },
+    "hero": {
+      "titlePart1": "Gas Station Management System",
+      "titlePart2": "IGAS",
+      "subtitle": "The perfect solution for your gas station. Monitor all pumping activities and issue electronic invoices.",
+      "loginBtn": "Login"
+    },
+    "features": {
+      "title": "IGAS Software Features",
+      "items": {
+        "f1_title": "Online Station Monitoring",
+        "f1_desc": "Remotely and online monitor all parameters and pumping activities at the station.",
+        "f2_title": "Pump Code Data Management",
+        "f2_desc": "Automatically save data and create pump codes upon completion. Easy payment and immediate invoice issuance.",
+        "f3_title": "Electronic Invoice Integration",
+        "f3_desc": "Integrates with all e-invoice providers. Supports 'one-touch' invoice issuance directly in the software.",
+        "f4_title": "Business Operation Support",
+        "f4_desc": "Connects all company stores, centralized data management. Optimizes business management costs.",
+        "f5_title": "Shift Management for Stations",
+        "f5_desc": "Automatic shift division and closing. Supports tools to record deposits, funds, and inventory during shift closing.",
+        "f6_title": "Statistical Reports",
+        "f6_desc": "In-depth analysis of each category and sales indicators. Export detailed reports by day, month, quarter, and year."
+      }
+    },
+    "pricing": {
+      "title": "Product Packages for Businesses",
+      "tiers": {
+        "basic": {
+          "name": "Basic",
+          "price": "Trial",
+          "period": "",
+          "features": [
+            "Online pump activity monitoring",
+            "Pump code management",
+            "Station list management",
+            "Reports and statistics"
+          ]
+        },
+        "standard": {
+          "name": "Standard",
+          "price": "5,000,000đ",
+          "period": "/station/year",
+          "features": [
+            "Online pump activity monitoring",
+            "Pump code and payment management",
+            "Station and personnel list management",
+            "In-depth reports and statistics",
+            "E-invoice service integration",
+            "Shift closing, revenue, and cash fund management"
+          ]
+        },
+        "advanced": {
+          "name": "Advanced",
+          "price": "Contact",
+          "period": "",
+          "features": [
+            "Includes standard features",
+            "Integration with business systems",
+            "Customer file and debt management",
+            "Fuel supply chain management",
+            "Card payment, customer Face ID",
+            "VETC, Kiosk payment integration,..."
+          ]
+        }
+      },
+      "cta": "Register Now"
+    },
+    "contact": {
+      "title": "Contact for Consultation",
+      "nameLabel": "Full Name",
+      "namePlaceholder": "Enter your full name",
+      "emailLabel": "Email",
+      "emailPlaceholder": "Enter your email",
+      "phoneLabel": "Phone Number",
+      "phonePlaceholder": "Enter your phone number",
+      "companyLabel": "Company Name",
+      "companyPlaceholder": "Enter your company name",
+      "packageLabel": "Which product package are you interested in?",
+      "packageBasic": "Basic",
+      "packageStandard": "Standard",
+      "packageAdvanced": "Advanced",
+      "messageLabel": "What do you want to be consulted about?",
+      "messagePlaceholder": "I want consultation regarding...",
+      "submit": "Submit",
+      "alert": "Contact information received: "
+    }
+  }
 }

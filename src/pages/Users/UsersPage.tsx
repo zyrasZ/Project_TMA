@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useUsers } from '../../hooks/useUsers';
-import { useCreateUser } from '../../hooks/useCreateUser';
-import { useDeleteUser } from '../../hooks/useDeleteUser';
-import { useUpdateUser } from '../../hooks/useUpdateUser';
+import { useUsers } from '../../hooks/api/users/useUsers';
+import { useCreateUser } from '../../hooks/api/users/useCreateUser';
+import { useDeleteUser } from '../../hooks/api/users/useDeleteUser';
+import { useUpdateUser } from '../../hooks/api/users/useUpdateUser';
 
 export const UsersPage = () => {
   const [search, setSearch] = useState('');

@@ -1,6 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../../lib/utils';
 import { ReactNode } from 'react';
+import { Warning } from '@phosphor-icons/react';
 
 export const formFieldVariants = cva('flex flex-col gap-1.5 w-full');
 
@@ -28,7 +29,16 @@ export const FormField = ({
         </label>
       )}
       {children}
-      {error && <span className="text-xs text-alert">{error}</span>}
+      {error && (
+        <span className="flex items-center gap-1 text-xs text-alert">
+          <Warning
+            weight="bold"
+            className="shrink-0"
+            style={{ width: 14, height: 12.5, marginTop: 1.5, marginLeft: 1 }}
+          />
+          {error}
+        </span>
+      )}
     </div>
   );
 };

@@ -1,56 +1,40 @@
 import { Card, CardBody, CardHeader, CardContent } from '../../../components/ui/Card';
 import { Button } from '../../../components/ui/Button';
 import { cn } from '../../../lib/utils';
-
-const TIERS = [
-  {
-    name: 'Cơ bản',
-    price: 'Dùng thử',
-    period: '',
-    features: [
-      'Giám sát hoạt động bơm xăng trực tuyến',
-      'Quản lý mã bơm',
-      'Quản lý danh sách trạm',
-      'Báo cáo và thống kê',
-    ],
-    highlight: false,
-  },
-  {
-    name: 'Tiêu chuẩn',
-    price: '5.000.000đ',
-    period: '/trạm/năm',
-    features: [
-      'Giám sát hoạt động bơm xăng trực tuyến',
-      'Quản lý mã bơm và thanh toán',
-      'Quản lý danh sách trạm và nhân sự',
-      'Báo cáo và thống kê chuyên sâu',
-      'Tích hợp dịch vụ xuất hoá đơn điện tử',
-      'Quản lý chốt ca, doanh thu và sổ quỹ',
-    ],
-    highlight: true,
-  },
-  {
-    name: 'Nâng cao',
-    price: 'Liên hệ',
-    period: '',
-    features: [
-      'Bao gồm các tính năng tiêu chuẩn',
-      'Tích hợp với hệ thống của doanh nghiệp',
-      'Quản lý tệp khách hàng và công nợ',
-      'Quản lý chuỗi cung ứng nhiên liệu',
-      'Thanh toán thẻ, face ID khách hàng',
-      'Tích hợp thanh toán VETC, Kiosk,...',
-    ],
-    highlight: false,
-  },
-];
+import { useTranslation } from 'react-i18next';
 
 export const PricingSection = () => {
+  const { t } = useTranslation('common');
+
+  const TIERS = [
+    {
+      name: t('landing.pricing.tiers.basic.name'),
+      price: t('landing.pricing.tiers.basic.price'),
+      period: t('landing.pricing.tiers.basic.period'),
+      features: t('landing.pricing.tiers.basic.features', { returnObjects: true }) as string[],
+      highlight: false,
+    },
+    {
+      name: t('landing.pricing.tiers.standard.name'),
+      price: t('landing.pricing.tiers.standard.price'),
+      period: t('landing.pricing.tiers.standard.period'),
+      features: t('landing.pricing.tiers.standard.features', { returnObjects: true }) as string[],
+      highlight: true,
+    },
+    {
+      name: t('landing.pricing.tiers.advanced.name'),
+      price: t('landing.pricing.tiers.advanced.price'),
+      period: t('landing.pricing.tiers.advanced.period'),
+      features: t('landing.pricing.tiers.advanced.features', { returnObjects: true }) as string[],
+      highlight: false,
+    },
+  ];
+
   return (
     <section id="pricing" className="py-24 px-4 md:px-10 bg-white">
       <div className="w-full max-w-[1424px] mx-auto">
         <h2 className="text-3xl md:text-5xl font-bold text-center text-content-main mb-16">
-          Các gói sản phẩm cho doanh nghiệp
+          {t('landing.pricing.title')}
         </h2>
         
         <div className="flex flex-col lg:flex-row justify-center gap-8">
@@ -86,7 +70,7 @@ export const PricingSection = () => {
                       variant="primary" 
                       className="w-full justify-center h-[48px] rounded-lg font-bold"
                     >
-                      Đăng ký ngay
+                      {t('landing.pricing.cta')}
                     </Button>
                   </div>
 

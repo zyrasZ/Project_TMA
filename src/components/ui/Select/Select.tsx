@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { SelectRootProps } from '@primereact/types/primitive/select';
 import { Select as PrimeSelect } from 'primereact/select';
 import { FormField } from '../FormField';
@@ -63,9 +63,17 @@ export const Select = ({
 }: SelectProps) => {
   const [internalValue, setInternalValue] = useState<any>(value || (multiple ? [] : null));
 
+  useEffect(() => {
+    if (value !== undefined) {
+      setInternalValue(value);
+    }
+  }, [value]);
+
   const handleChange = (e: any) => {
-    setInternalValue(e.value);
-    onChange?.({ value: e.value });
+    // Some Headless components pass the event object {value: ...}, others pass the value directly.
+    const newValue = e && typeof e === 'object' && 'value' in e ? e.value : e;
+    setInternalValue(newValue);
+    onChange?.({ value: newValue });
   };
 
   const isError = hasError || !!error;
@@ -75,6 +83,9 @@ export const Select = ({
     <PrimeSelect.Root
       value={internalValue !== undefined ? internalValue : value}
       onValueChange={handleChange}
+      options={options}
+      optionLabel="label"
+      optionValue="value"
       disabled={isSelectDisabled}
       className={cn(selectVariants({ hasError: isError, isDisabled: isSelectDisabled, className }))}
       {...props}
@@ -91,11 +102,11 @@ export const Select = ({
               {options.map((opt, i) => (
                 <PrimeSelect.Option
                   key={opt.value ?? i}
-                  value={opt.value}
-                  className="px-3 py-2 cursor-pointer flex items-center justify-between mx-1 mb-1 rounded-md transition-colors text-sm text-content-main hover:bg-surface data-[selected]:bg-primary/10 data-[selected]:text-primary data-[selected]:font-medium outline-none"
+                  index={i}
+                  className="px-3 py-2 cursor-pointer flex items-center justify-between mx-1 mb-1 rounded-md transition-colors text-sm text-content-main hover:bg-surface data-[selected]:bg-primary/10 data-[selected]:text-primary data-[selected]:font-medium outline-none group"
                 >
                   <span>{opt.label}</span>
-                  <PrimeSelect.OptionIndicator>
+                  <PrimeSelect.OptionIndicator className="hidden group-data-[selected]:block">
                     <Check size={16} weight="bold" />
                   </PrimeSelect.OptionIndicator>
                 </PrimeSelect.Option>

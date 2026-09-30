@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { cn } from '../../../lib/utils';
 import { Button } from '../Button';
 import { Toolbar } from 'primereact/toolbar';
+import { useTranslation } from 'react-i18next';
 
 export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
   logo?: React.ReactNode;
@@ -14,6 +15,7 @@ export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
 export const Header = React.forwardRef<HTMLElement, HeaderProps>(
   ({ logo, navLinks = [], rightElement, className, containerClassName, ...props }, ref) => {
     const navigate = useNavigate();
+    const { t } = useTranslation('common');
     
     const startContent = (
       <React.Fragment>
@@ -43,7 +45,7 @@ export const Header = React.forwardRef<HTMLElement, HeaderProps>(
             className="h-[40px] px-5 !text-white font-semibold transition-colors duration-300 ease-out hover:bg-turquoise-700"
             onClick={() => navigate('/login')}
           >
-            Đăng nhập
+            {t('login.submit')}
           </Button>
         )}
       </React.Fragment>

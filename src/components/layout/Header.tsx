@@ -1,5 +1,4 @@
 
-
 export const Header = () => {
   return (
     <header className="h-16 bg-white border-b flex items-center px-6 shadow-sm shrink-0">

@@ -1,4 +1,191 @@
 {
   "greeting": "Xin chào",
-  "contact": "Liên hệ với chúng tôi"
+  "contact": "Liên hệ với chúng tôi",
+  "companyManagement": {
+    "title": "Quản lý công ty",
+    "addCompany": "Thêm công ty",
+    "search": "Tìm kiếm",
+    "searchPlaceholder": "Tìm kiếm",
+    "status": "Trạng thái",
+    "statusPlaceholder": "Chọn trạng thái",
+    "statusAll": "Tất cả",
+    "statusActive": "Hoạt động",
+    "statusInactive": "Ngừng hoạt động",
+    "resetFilter": "Đặt lại bộ lọc",
+    "table": {
+      "id": "ID",
+      "company": "Công ty",
+      "username": "Tên đăng nhập",
+      "taxCode": "MST",
+      "phone": "Số điện thoại",
+      "email": "Email",
+      "status": "Trạng thái",
+      "actions": "Chức năng",
+      "empty": "Chưa có công ty nào.",
+      "accessCompanyPage": "Truy cập trang công ty",
+      "viewInfo": "Xem thông tin",
+      "updateInfo": "Cập nhật thông tin",
+      "lockCompany": "Khóa công ty",
+      "unlockCompany": "Mở khóa công ty",
+      "resetPassword": "Đặt lại mật khẩu"
+    },
+    "itemName": "công ty",
+    "modal": {
+      "companyInfo": "Thông tin công ty",
+      "close": "Đóng",
+      "addCompany": "Thêm công ty mới",
+      "cancel": "Hủy",
+      "save": "Lưu",
+      "companyName": "Tên công ty",
+      "companyNamePlaceholder": "Nhập tên công ty",
+      "taxCodePlaceholder": "Nhập mã số thuế",
+      "phonePlaceholder": "Nhập số điện thoại",
+      "emailPlaceholder": "Nhập email",
+      "usernamePlaceholder": "Nhập tên đăng nhập",
+      "updateCompany": "Cập nhật công ty",
+      "lockTitle": "Khóa công ty",
+      "unlockTitle": "Mở khóa công ty",
+      "confirm": "Xác nhận",
+      "lockConfirmMsg": "Bạn có chắc muốn khóa công ty này không?",
+      "unlockConfirmMsg": "Bạn có chắc muốn mở khóa công ty này không?",
+      "lockWarning": "Sau khi khóa, công ty này và các bên liên quan không thể sử dụng tài khoản để truy cập được nữa.",
+      "unlockWarning": "Sau khi mở khóa, công ty này và các bên liên quan sẽ có thể sử dụng tài khoản để truy cập trở lại.",
+      "resetPasswordTitle": "Đặt lại mật khẩu",
+      "resetPasswordConfirmMsg": "Bạn có chắc muốn đặt lại mật khẩu cho tài khoản công ty này không?",
+      "resetPasswordWarning1": "Tài khoản công ty sẽ được đặt lại mật khẩu là số điện thoại đã đăng ký: "
+    },
+    "toast": {
+      "success": "Thành công",
+      "addSuccess": "Đã thêm công ty mới",
+      "updateSuccess": "Đã cập nhật thông tin công ty",
+      "lockSuccess": "Đã khóa công ty thành công",
+      "unlockSuccess": "Đã mở khóa công ty thành công",
+      "resetPasswordSuccess": "Đã đặt lại mật khẩu thành công. Mật khẩu mới là: {{password}}"
+    },
+    "validation": {
+      "invalidName": "Tên công ty chưa hợp lệ. Vui lòng nhập lại.",
+      "invalidTaxCode": "Mã số thuế chưa hợp lệ. Vui lòng nhập lại.",
+      "invalidPhone": "Số điện thoại chưa hợp lệ. Vui lòng nhập lại.",
+      "invalidEmail": "Email chưa hợp lệ. Vui lòng nhập lại.",
+      "invalidUsername": "Tên đăng nhập chưa hợp lệ. Vui lòng nhập lại.",
+      "usernameExists": "Tên đăng nhập đã được sử dụng. Vui lòng nhập lại."
+    }
+  },
+  "navbar": {
+    "companies": "Quản lý công ty",
+    "devices": "Quản lý thiết bị",
+    "logs": "Nhật ký lịch tự động",
+    "tools": "Công cụ",
+    "option1": "Tùy chọn 1",
+    "option2": "Tùy chọn 2",
+    "myAccount": "Tài khoản của tôi",
+    "logout": "Đăng xuất"
+  },
+  "login": {
+    "title": "Đăng nhập",
+    "emailLabel": "Tên đăng nhập",
+    "emailPlaceholder": "Nhập tên đăng nhập",
+    "emailRequired": "Vui lòng nhập email",
+    "emailInvalid": "Email không hợp lệ",
+    "passwordLabel": "Mật khẩu",
+    "passwordPlaceholder": "Nhập mật khẩu",
+    "passwordRequired": "Vui lòng nhập mật khẩu",
+    "forgotPassword": "Quên mật khẩu?",
+    "submit": "Đăng nhập",
+    "submitting": "Đang xử lý...",
+    "illustrationText": "Quản lý và tra cứu dữ liệu các trạm bơm, xuất hóa đơn tự động và thủ công"
+  },
+  "landing": {
+    "nav": {
+      "features": "Tính năng",
+      "pricing": "Bảng giá",
+      "contact": "Liên hệ",
+      "guide": "Hướng dẫn sử dụng"
+    },
+    "hero": {
+      "titlePart1": "Hệ thống quản lý trạm xăng dầu",
+      "titlePart2": "IGAS",
+      "subtitle": "Giải pháp hoàn hảo cho trạm xăng dầu của bạn. Giám sát mọi hoạt động bơm xăng dầu và xuất hoá đơn điện tử.",
+      "loginBtn": "Đăng nhập"
+    },
+    "features": {
+      "title": "Các tính năng phần mềm IGAS",
+      "items": {
+        "f1_title": "Giám sát trạm trực tuyến",
+        "f1_desc": "Giám sát từ xa và trực tuyến mọi thông số và hoạt động bơm xăng tại trạm.",
+        "f2_title": "Quản lý dữ liệu mã bơm",
+        "f2_desc": "Tự động lưu dữ liệu và tạo mã bơm ngay khi bơm xong. Dễ dàng thanh toán và xuất hoá đơn ngay lập tức.",
+        "f3_title": "Tích hợp hóa đơn điện tử",
+        "f3_desc": "Tích hợp với tất cả các đơn vị cung cấp hoá đơn điện tử. Hỗ trợ xuất hoá đơn \"một chạm\" ngay trong phần mềm.",
+        "f4_title": "Hỗ trợ vận hành doanh nghiệp",
+        "f4_desc": "Kết nối tất cả cửa hàng của doanh nghiệp, quản lý dữ liệu tập trung. Tối ưu chi phí quản lý doanh nghiệp.",
+        "f5_title": "Quản lý chia ca cho trạm xăng",
+        "f5_desc": "Chia ca và chốt ca tự động. Hỗ trợ công cụ lưu tiền nộp, tiền quỹ và kiểm kê khi chốt ca.",
+        "f6_title": "Báo cáo thống kê",
+        "f6_desc": "Phân tích chuyên sâu từng hạng mục và chỉ số bán hàng. Xuất báo cáo chi tiết theo từng ngày, tháng, quý và năm."
+      }
+    },
+    "pricing": {
+      "title": "Các gói sản phẩm cho doanh nghiệp",
+      "tiers": {
+        "basic": {
+          "name": "Cơ bản",
+          "price": "Dùng thử",
+          "period": "",
+          "features": [
+            "Giám sát hoạt động bơm xăng trực tuyến",
+            "Quản lý mã bơm",
+            "Quản lý danh sách trạm",
+            "Báo cáo và thống kê"
+          ]
+        },
+        "standard": {
+          "name": "Tiêu chuẩn",
+          "price": "5.000.000đ",
+          "period": "/trạm/năm",
+          "features": [
+            "Giám sát hoạt động bơm xăng trực tuyến",
+            "Quản lý mã bơm và thanh toán",
+            "Quản lý danh sách trạm và nhân sự",
+            "Báo cáo và thống kê chuyên sâu",
+            "Tích hợp dịch vụ xuất hoá đơn điện tử",
+            "Quản lý chốt ca, doanh thu và sổ quỹ"
+          ]
+        },
+        "advanced": {
+          "name": "Nâng cao",
+          "price": "Liên hệ",
+          "period": "",
+          "features": [
+            "Bao gồm các tính năng tiêu chuẩn",
+            "Tích hợp với hệ thống của doanh nghiệp",
+            "Quản lý tệp khách hàng và công nợ",
+            "Quản lý chuỗi cung ứng nhiên liệu",
+            "Thanh toán thẻ, face ID khách hàng",
+            "Tích hợp thanh toán VETC, Kiosk,..."
+          ]
+        }
+      },
+      "cta": "Đăng ký ngay"
+    },
+    "contact": {
+      "title": "Liên hệ tư vấn",
+      "nameLabel": "Họ tên",
+      "namePlaceholder": "Nhập họ tên của bạn",
+      "emailLabel": "Email",
+      "emailPlaceholder": "Nhập email của bạn",
+      "phoneLabel": "Điện thoại",
+      "phonePlaceholder": "Nhập điện thoại của bạn",
+      "companyLabel": "Tên công ty",
+      "companyPlaceholder": "Nhập tên công ty của bạn",
+      "packageLabel": "Bạn đang quan tâm gói sản phẩm nào",
+      "packageBasic": "Cơ bản",
+      "packageStandard": "Tiêu chuẩn",
+      "packageAdvanced": "Nâng cao",
+      "messageLabel": "Bạn mong muốn được tư vấn về vấn đề gì?",
+      "messagePlaceholder": "Tôi muốn được tư vấn về...",
+      "submit": "Gửi",
+      "alert": "Đã nhận thông tin liên hệ: "
+    }
+  }
 }

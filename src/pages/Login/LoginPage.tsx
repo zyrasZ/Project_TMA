@@ -1,20 +1,26 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useLogin } from '../../hooks/useLogin';
+import { useLogin } from '../../hooks/api/auth/useLogin';
 import { Eye, EyeSlash } from '@phosphor-icons/react';
+import { Button } from '../../components/ui/Button';
+import { Input } from '../../components/ui/Input';
+import { useTranslation } from 'react-i18next';
 
-const loginSchema = z.object({
-  email: z.string().min(1, { message: 'Vui lòng nhập email' }).email({ message: 'Email không hợp lệ' }),
-  password: z.string().min(1, { message: 'Vui lòng nhập mật khẩu' }),
+const getLoginSchema = (t: any) => z.object({
+  email: z.string().min(1, { message: t('login.emailRequired') }).email({ message: t('login.emailInvalid') }),
+  password: z.string().min(1, { message: t('login.passwordRequired') }),
 });
 
-type LoginFormData = z.infer<typeof loginSchema>;
+type LoginFormData = z.infer<ReturnType<typeof getLoginSchema>>;
 
 export const LoginPage = () => {
+  const { t } = useTranslation('common');
   const [showPassword, setShowPassword] = useState(false);
   const loginMutation = useLogin();
+
+  const loginSchema = useMemo(() => getLoginSchema(t), [t]);
 
   const {
     register,
@@ -38,7 +44,7 @@ export const LoginPage = () => {
             <img src="/logo.png" alt="TMA Logo" className="h-12 object-contain" />
           </div>
 
-          <h1 className="text-[32px] font-bold text-gray-900 mb-8">Đăng nhập</h1>
+          <h1 className="text-[32px] font-bold text-gray-900 mb-8">{t('login.title')}</h1>
           
           {loginMutation.isError && (
             <div className="p-3 mb-6 bg-red-50 text-red-600 rounded-lg text-sm border border-red-100">
@@ -48,61 +54,48 @@ export const LoginPage = () => {
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             {/* Tên đăng nhập */}
-            <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Tên đăng nhập <span className="text-red-500">*</span>
-              </label>
-              <input 
-                type="text" 
-                {...register('email')} 
-                placeholder="Nhập tên đăng nhập"
-                className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-[#18A0A0]/20 focus:border-[#18A0A0] transition-colors ${
-                  errors.email ? 'border-red-500' : 'border-gray-300'
-                }`}
-              />
-              {errors.email && <span className="text-red-500 text-xs mt-1 block">{errors.email.message}</span>}
-            </div>
+            <Input 
+              label={t('login.emailLabel')}
+              required
+              {...register('email')} 
+              placeholder={t('login.emailPlaceholder')}
+              error={errors.email?.message}
+            />
 
             {/* Mật khẩu */}
-            <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Mật khẩu <span className="text-red-500">*</span>
-              </label>
-              <div className="relative">
-                <input 
-                  type={showPassword ? "text" : "password"} 
-                  {...register('password')} 
-                  placeholder="Nhập mật khẩu"
-                  className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-[#18A0A0]/20 focus:border-[#18A0A0] transition-colors pr-10 ${
-                    errors.password ? 'border-red-500' : 'border-gray-300'
-                  }`}
-                />
+            <Input 
+              label={t('login.passwordLabel')}
+              required
+              type={showPassword ? "text" : "password"} 
+              {...register('password')} 
+              placeholder={t('login.passwordPlaceholder')}
+              error={errors.password?.message}
+              iconRight={
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
+                  className="text-gray-400 hover:text-gray-600 focus:outline-none flex items-center justify-center cursor-pointer"
                 >
                   {showPassword ? <EyeSlash size={20} /> : <Eye size={20} />}
                 </button>
-              </div>
-              {errors.password && <span className="text-red-500 text-xs mt-1 block">{errors.password.message}</span>}
-            </div>
+              }
+            />
             
             {/* Quên mật khẩu */}
             <div className="flex justify-end">
-              <a href="#" className="text-sm font-semibold text-[#18A0A0] hover:text-[#127a7a] transition-colors">
-                Quên mật khẩu?
-              </a>
+              <Button variant="link" className="text-sm font-semibold">
+                {t('login.forgotPassword')}
+              </Button>
             </div>
 
             {/* Nút Submit */}
-            <button 
+            <Button 
               type="submit" 
               disabled={loginMutation.isPending}
-              className="w-full py-3.5 px-4 bg-[#18A0A0] hover:bg-[#127a7a] text-white font-semibold rounded-lg transition-colors duration-200 disabled:opacity-70 disabled:cursor-not-allowed mt-2"
+              className="w-full mt-2 py-3.5"
             >
-              {loginMutation.isPending ? 'Đang xử lý...' : 'Đăng nhập'}
-            </button>
+              {loginMutation.isPending ? t('login.submitting') : t('login.submit')}
+            </Button>
           </form>
 
 
@@ -131,7 +124,7 @@ export const LoginPage = () => {
           {/* Khung Text giới thiệu */}
           <div className="w-full max-w-[708px] mt-6 lg:mt-12 min-h-[100px] lg:min-h-[128px] shrink-0 bg-[#1E2020]/20 backdrop-blur-[20px] rounded-[16px] p-6 lg:p-[32px] flex items-center">
             <p className="text-white text-base lg:text-xl font-medium leading-relaxed">
-              Quản lý và tra cứu dữ liệu các trạm bơm, xuất hóa đơn tự động và thủ công
+              {t('login.illustrationText')}
             </p>
           </div>
         </div>

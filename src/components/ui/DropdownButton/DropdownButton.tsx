@@ -1,7 +1,8 @@
-import { forwardRef, useState, useRef, useEffect } from 'react';
+import { forwardRef } from 'react';
 import { CaretDown } from '@phosphor-icons/react';
-import { Button, ButtonVariant, ButtonSize } from '../Button';
+import { ButtonVariant, ButtonSize, buttonVariants } from '../Button';
 import { cn } from '../../../lib/utils';
+import { Menu, MenuTrigger, MenuPortal, MenuPositioner, MenuPopup, MenuArrow, MenuList, MenuItem } from '../Menu';
 
 export interface DropdownMenuItem {
   label: string;
@@ -24,49 +25,35 @@ export const DropdownButton = forwardRef<HTMLDivElement, DropdownButtonProps>(({
   size = 'md',
   className,
 }, ref) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
   return (
-    <div className={cn('relative inline-block', className)} ref={ref || containerRef}>
-      <Button 
-        variant={variant} 
-        size={size} 
-        className="flex items-center gap-3 !px-4"
-        onClick={() => setIsOpen(!isOpen)}
-        aria-haspopup
-      >
-        <span>{label}</span>
-        <div className="w-[1px] h-4 bg-current opacity-30 mx-1"></div>
-        <CaretDown size={16} weight="bold" />
-      </Button>
-      {isOpen && (
-        <div className="absolute mt-2 min-w-[200px] bg-white border border-border rounded-md shadow-lg z-50 py-1">
-          {items.map((item, i) => (
-            <div 
-              key={i}
-              className="px-4 py-2 hover:bg-surface cursor-pointer text-sm text-content-main flex items-center gap-2"
-              onClick={(e) => {
-                if (item.command) item.command({ originalEvent: e, item });
-                setIsOpen(false);
-              }}
-            >
-              {item.icon && <span className={item.icon}></span>}
-              {item.label}
-            </div>
-          ))}
-        </div>
-      )}
+    <div className={cn('relative inline-block', className)} ref={ref}>
+      <Menu>
+        <MenuTrigger 
+          className={cn(buttonVariants({ variant, size }), "flex items-center gap-3 !px-4 cursor-pointer")}
+        >
+          <span>{label}</span>
+          <div className="w-[1px] h-4 bg-current opacity-30 mx-1"></div>
+          <CaretDown size={16} weight="bold" />
+        </MenuTrigger>
+        <MenuPortal>
+          <MenuPositioner>
+            <MenuPopup>
+              <MenuArrow />
+              <MenuList>
+                {items.map((item, i) => (
+                  <MenuItem 
+                    key={i} 
+                    onSelect={(e: any) => item.command ? item.command({ originalEvent: e, item }) : undefined}
+                  >
+                    {item.icon && <span className={item.icon}></span>}
+                    {item.label}
+                  </MenuItem>
+                ))}
+              </MenuList>
+            </MenuPopup>
+          </MenuPositioner>
+        </MenuPortal>
+      </Menu>
     </div>
   );
 });

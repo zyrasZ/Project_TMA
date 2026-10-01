@@ -19,8 +19,6 @@ export const CompanyManagementPage = () => {
   const { t } = useTranslation('common');
   const { showToast } = useAppToast();
   
-  const { data: companies = [], isLoading } = useGetCompanies();
-  
   const [search, setSearch] = useState('');
   const [status, setStatus] = useState<string | null>(null);
   const [selectedCompany, setSelectedCompany] = useState<any | null>(null);
@@ -34,17 +32,15 @@ export const CompanyManagementPage = () => {
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(30);
 
-  const filteredCompanies = companies.filter(company => {
-    const matchesSearch = search 
-      ? company.name.toLowerCase().includes(search.toLowerCase()) || 
-        company.username.toLowerCase().includes(search.toLowerCase()) ||
-        company.email.toLowerCase().includes(search.toLowerCase())
-      : true;
-    const matchesStatus = status && status !== 'all' ? company.status === status : true;
-    return matchesSearch && matchesStatus;
+  const { data: companiesData, isLoading } = useGetCompanies({
+    search,
+    status,
+    first,
+    rows
   });
 
-  const paginatedCompanies = filteredCompanies.slice(first, first + rows);
+  const companies = companiesData?.data || [];
+  const totalRecords = companiesData?.total || 0;
 
   return (
     <div className="flex flex-col gap-6">
@@ -69,9 +65,10 @@ export const CompanyManagementPage = () => {
           status={status}
           setStatus={setStatus}
         />
-
+        
+        {/* Table Section */}
         <CompanyTable 
-          companies={paginatedCompanies}
+          companies={companies}
           isLoading={isLoading}
           onViewInfo={setSelectedCompany}
           onEdit={setEditingCompany}
@@ -83,7 +80,7 @@ export const CompanyManagementPage = () => {
         <Paginator 
           first={first}
           rows={rows}
-          totalRecords={filteredCompanies.length}
+          totalRecords={totalRecords}
           itemName={t('companyManagement.itemName')}
           onPageChange={(e) => {
             setFirst(e.first);

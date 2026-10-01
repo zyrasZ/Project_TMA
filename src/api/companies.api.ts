@@ -4,10 +4,47 @@ import type { Company } from '../types/company';
 // Giả lập Database nội bộ để lưu thay đổi tạm thời
 let db = [...companiesMock];
 
+export interface GetCompaniesParams {
+  search?: string;
+  status?: string | null;
+  first?: number;
+  rows?: number;
+}
+
+export interface GetCompaniesResponse {
+  data: Company[];
+  total: number;
+}
+
 export const companyApi = {
   // Lấy danh sách
-  getCompanies: async (): Promise<Company[]> => {
-    return new Promise((resolve) => setTimeout(() => resolve(db), 500));
+  getCompanies: async (params?: GetCompaniesParams): Promise<GetCompaniesResponse> => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        let filtered = [...db];
+        
+        if (params?.search) {
+          const s = params.search.toLowerCase();
+          filtered = filtered.filter(c => 
+            c.name.toLowerCase().includes(s) || 
+            c.username.toLowerCase().includes(s) || 
+            c.email.toLowerCase().includes(s)
+          );
+        }
+        
+        if (params?.status && params.status !== 'all') {
+          filtered = filtered.filter(c => c.status === params.status);
+        }
+        
+        const total = filtered.length;
+        
+        if (params?.first !== undefined && params?.rows !== undefined) {
+          filtered = filtered.slice(params.first, params.first + params.rows);
+        }
+        
+        resolve({ data: filtered, total });
+      }, 500);
+    });
   },
   
   // Lấy 1 công ty

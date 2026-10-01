@@ -79,7 +79,7 @@ export const EditCompanyModal = ({ company, onClose, companies, showToast }: Edi
         <div className="p-6">
           <div className="flex justify-center mb-6">
             <div className="w-[100px] h-[100px] bg-primary/10 rounded-full flex items-center justify-center border border-border overflow-hidden">
-              <Avatar label={company.name?.slice(0,3).toUpperCase() || 'TMA'} shape="circle" className="w-full h-full bg-primary/10 text-primary font-bold text-[22px]" />
+              <Avatar label="TMA" shape="circle" className="w-full h-full bg-primary/10 text-primary font-bold text-[22px]" />
             </div>
           </div>
           <div className="flex flex-col gap-5">

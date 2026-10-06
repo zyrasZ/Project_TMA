@@ -16,7 +16,7 @@ export const usersMock: User[] = [
     name: 'Tran Thi Binh',
     email: 'binh@gmail.com',
     age: 28,
-    role: 'user',
+    role: 'staff',
     status: 'active',
     avatar: 'https://i.pravatar.cc/150?img=2',
     createdAt: '2026-09-02T08:00:00Z'
@@ -36,7 +36,7 @@ export const usersMock: User[] = [
     name: 'Pham Thi Dung',
     email: 'dung@gmail.com',
     age: 24,
-    role: 'user',
+    role: 'staff',
     status: 'active',
     avatar: 'https://i.pravatar.cc/150?img=4',
     createdAt: '2026-09-04T08:00:00Z'
@@ -46,7 +46,7 @@ export const usersMock: User[] = [
     name: 'Hoang Van Em',
     email: 'em@gmail.com',
     age: 29,
-    role: 'user',
+    role: 'staff',
     status: 'inactive',
     avatar: 'https://i.pravatar.cc/150?img=5',
     createdAt: '2026-09-05T08:00:00Z'

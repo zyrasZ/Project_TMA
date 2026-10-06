@@ -187,5 +187,31 @@
       "submit": "Submit",
       "alert": "Contact information received: "
     }
+  },
+  "staffNavbar": {
+    "account": "Account",
+    "stations": "Stations",
+    "invoices": "Invoices",
+    "shifts": "Shifts",
+    "customers": "Customers",
+    "allocation": "Allocation",
+    "tools": "Tools",
+    "reports": "Reports",
+    "guide": "User Guide"
+  },
+  "overview": {
+    "loading": "Loading overview data...",
+    "title": "TMA Solutions Gas Station Company",
+    "stations": "Stations",
+    "pumps": "Pumps",
+    "tanks": "Fuel Tanks",
+    "staff": "Staff",
+    "revenue": {
+      "title": "Revenue by station",
+      "loading": "Loading revenue data...",
+      "noData": "No data available",
+      "station1": "Quang Trung Station",
+      "station2": "Le Loi Station"
+    }
   }
 }

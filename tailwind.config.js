@@ -55,6 +55,10 @@ export default {
         'caption-2': ['10px', { lineHeight: '16px', fontWeight: '400' }],
       },
       colors: {
+        border: {
+          DEFAULT: '#C0C4C4',
+          neutral: '#C0C4C4',
+        },
         'grey-neutral': {
           900: '#1E2020',
           800: '#313535',
@@ -178,7 +182,6 @@ export default {
         surface: '#F3F7F7',
         // Border / Divide
         divide: '#D5D7D7',
-        border: '#C0C4C4',
       },
     },
   },

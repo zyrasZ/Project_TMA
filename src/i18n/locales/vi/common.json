@@ -187,5 +187,31 @@
       "submit": "Gửi",
       "alert": "Đã nhận thông tin liên hệ: "
     }
+  },
+  "staffNavbar": {
+    "account": "Tài khoản",
+    "stations": "Trạm",
+    "invoices": "Hóa đơn",
+    "shifts": "Ca bán",
+    "customers": "Khách hàng",
+    "allocation": "Cấp phát",
+    "tools": "Công cụ",
+    "reports": "Báo cáo",
+    "guide": "Hướng dẫn sử dụng"
+  },
+  "overview": {
+    "loading": "Đang tải dữ liệu tổng quan...",
+    "title": "Công ty xăng dầu TMA Solutions",
+    "stations": "Trạm",
+    "pumps": "Vòi bơm",
+    "tanks": "Bồn nhiên liệu",
+    "staff": "Nhân sự",
+    "revenue": {
+      "title": "Doanh thu theo trạm",
+      "loading": "Đang tải dữ liệu doanh thu...",
+      "noData": "Không có dữ liệu",
+      "station1": "Trạm Quang Trung",
+      "station2": "Trạm Lê Lợi"
+    }
   }
 }

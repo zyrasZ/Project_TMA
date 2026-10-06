@@ -23,6 +23,8 @@ export const useLogin = () => {
       // Chuyển hướng dựa trên role
       if (data.user.role === 'admin') {
         navigate('/admin/companies');
+      } else if (data.user.role === 'staff') {
+        navigate('/staff/overview');
       } else {
         navigate('/app');
       }

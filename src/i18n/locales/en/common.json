@@ -213,5 +213,95 @@
       "station1": "Quang Trung Station",
       "station2": "Le Loi Station"
     }
+  },
+  "stationManagement": {
+    "title": "Station List",
+    "search": "Search",
+    "searchPlaceholder": "Search",
+    "province": "Province",
+    "provincePlaceholder": "Select province",
+    "type": "Station Type",
+    "typePlaceholder": "Select station type",
+    "status": "Status",
+    "statusPlaceholder": "Select status",
+    "resetFilter": "Reset filter",
+    "table": {
+      "id": "ID CBX",
+      "name": "Station Name",
+      "address": "Address",
+      "type": "Station Type",
+      "expireDate": "Expiration Date",
+      "status": "Status",
+      "actions": "Actions",
+      "empty": "No stations found."
+    },
+    "actions": {
+      "fuelParams": "Fuel Parameters",
+      "viewInfo": "View Information",
+      "updateInfo": "Update Information",
+      "exportInvoice": "Export Invoice",
+      "dataIntegration": "Data Integration"
+    },
+    "fuelParams": {
+      "title": "Fuel Parameters",
+      "connected": "Connected - CBX Time:",
+      "disconnected": "Disconnected - CBX Time:",
+      "connectedShort": "Connected",
+      "disconnectedShort": "Disconnected",
+      "networkError": "CBX network connection lost. Please check the CBX network connection.",
+      "pumpsTitle": "Pumps",
+      "tanksTitle": "Fuel Tanks",
+      "pumpTable": {
+        "id": "Pump ID",
+        "name": "Pump Name",
+        "fuelType": "Fuel Type",
+        "connection": "Connection",
+        "status": "Status",
+        "liters": "Liters",
+        "price": "Unit Price",
+        "amount": "Total Amount",
+        "totalLiters": "Cumulative Liters",
+        "totalAmount": "Cumulative Amount"
+      },
+      "tankTable": {
+        "id": "Tank ID",
+        "name": "Tank Name",
+        "fuelType": "Fuel Type",
+        "connection": "Connection",
+        "level": "Level",
+        "fuel": "Fuel",
+        "water": "Water",
+        "liters": "Liters",
+        "mm": "mm",
+        "temp": "Temp (°C)"
+      }
+    },
+    "statusActive": "Active",
+    "statusExpired": "Expired",
+    "stationTypeStore": "Store",
+    "itemName": "stations",
+    "updateStation": {
+      "pumps": {
+        "title": "Pump List",
+        "add": "Add Pump",
+        "pumpName": "Pump Name",
+        "fromTank": "Pump from Tank",
+        "empty": "No pumps found",
+        "deleteTitle": "Delete Pump",
+        "deleteDesc": "Once deleted, this pump data cannot be recovered."
+      },
+      "tanks": {
+        "title": "Fuel Tank List",
+        "add": "Add Tank",
+        "capacity": "Capacity (liters)",
+        "empty": "No fuel tanks found",
+        "deleteTitle": "Delete Fuel Tank",
+        "deleteDesc": "Once deleted, this fuel tank data cannot be recovered."
+      },
+      "actions": {
+        "edit": "Edit",
+        "delete": "Delete"
+      }
+    }
   }
 }

@@ -213,5 +213,95 @@
       "station1": "Trạm Quang Trung",
       "station2": "Trạm Lê Lợi"
     }
+  },
+  "stationManagement": {
+    "title": "Danh sách trạm",
+    "search": "Tìm kiếm",
+    "searchPlaceholder": "Tìm kiếm",
+    "province": "Tỉnh thành",
+    "provincePlaceholder": "Chọn tỉnh thành",
+    "type": "Loại trạm",
+    "typePlaceholder": "Chọn loại trạm",
+    "status": "Trạng thái",
+    "statusPlaceholder": "Chọn trạng thái",
+    "resetFilter": "Đặt lại bộ lọc",
+    "table": {
+      "id": "ID CBX",
+      "name": "Tên trạm",
+      "address": "Địa chỉ",
+      "type": "Loại trạm",
+      "expireDate": "Ngày hết hạn",
+      "status": "Trạng thái",
+      "actions": "Chức năng",
+      "empty": "Chưa có trạm nào."
+    },
+    "actions": {
+      "fuelParams": "Thông số nhiên liệu",
+      "viewInfo": "Xem thông tin",
+      "updateInfo": "Cập nhật thông tin",
+      "exportInvoice": "Xuất hóa đơn",
+      "dataIntegration": "Data Integration"
+    },
+    "fuelParams": {
+      "title": "Thông số nhiên liệu",
+      "connected": "Đang kết nối - Thời gian CBX:",
+      "disconnected": "Ngưng kết nối - Thời gian CBX:",
+      "connectedShort": "Kết nối",
+      "disconnectedShort": "Mất kết nối",
+      "networkError": "CBX bị mất kết nối mạng. Vui lòng kiểm tra lại kết nối mạng của CBX.",
+      "pumpsTitle": "Vòi bơm",
+      "tanksTitle": "Bồn nhiên liệu",
+      "pumpTable": {
+        "id": "Mã vòi",
+        "name": "Tên vòi",
+        "fuelType": "Loại nhiên liệu",
+        "connection": "Kết nối",
+        "status": "Trạng thái",
+        "liters": "Số lít",
+        "price": "Đơn giá",
+        "amount": "Thành tiền",
+        "totalLiters": "Tổng lít lũy kế",
+        "totalAmount": "Tổng tiền lũy kế"
+      },
+      "tankTable": {
+        "id": "Mã bồn",
+        "name": "Tên bồn",
+        "fuelType": "Loại nhiên liệu",
+        "connection": "Kết nối",
+        "level": "Mức",
+        "fuel": "Nhiên liệu",
+        "water": "Nước",
+        "liters": "lít",
+        "mm": "mm",
+        "temp": "Nhiệt độ (°C)"
+      }
+    },
+    "statusActive": "Hoạt động",
+    "statusExpired": "Hết hạn",
+    "stationTypeStore": "Cửa hàng",
+    "itemName": "trạm",
+    "updateStation": {
+      "pumps": {
+        "title": "Danh sách vòi bơm",
+        "add": "Thêm vòi bơm",
+        "pumpName": "Tên vòi bơm",
+        "fromTank": "Bơm từ bồn",
+        "empty": "Chưa có vòi bơm",
+        "deleteTitle": "Xóa vòi bơm",
+        "deleteDesc": "Sau khi xoá, dữ liệu vòi bơm này không thể khôi phục lại."
+      },
+      "tanks": {
+        "title": "Danh sách bồn nhiên liệu",
+        "add": "Thêm bồn",
+        "capacity": "Dung tích (lít)",
+        "empty": "Chưa có bồn nhiên liệu",
+        "deleteTitle": "Xóa bồn bể",
+        "deleteDesc": "Sau khi xoá, dữ liệu bồn bể này không thể khôi phục lại."
+      },
+      "actions": {
+        "edit": "Chỉnh sửa",
+        "delete": "Xóa"
+      }
+    }
   }
 }

@@ -13,7 +13,7 @@ export const inputVariants = cva(
         false: 'border-border',
       },
       isDisabled: {
-        true: 'opacity-70 bg-surface pointer-events-none',
+        true: 'bg-[#EAEBEB] pointer-events-none text-content-main',
         false: '',
       },
     },
@@ -60,7 +60,7 @@ function Input({
   const isInputDisabled = isDisabled || props.disabled;
 
   const inputComponent = (
-    <div className={cn(inputVariants({ hasError: isError, isDisabled: isInputDisabled, className: wrapperClassName }))}>
+    <div className={cn(inputVariants({ hasError: isError, isDisabled: isInputDisabled, className: wrapperClassName ? undefined : undefined }))}>
       {prefixNode && (
         <div className="flex items-center justify-center bg-surface border-r border-border px-3 text-sm text-content-main">
           {prefixNode}
@@ -110,13 +110,13 @@ function Input({
 
   if (label || error) {
     return (
-      <FormField label={label} error={error} required={required}>
+      <FormField label={label} error={error} required={required} className={wrapperClassName}>
         {inputComponent}
       </FormField>
     );
   }
 
-  return inputComponent;
+  return <div className={cn('w-full', wrapperClassName)}>{inputComponent}</div>;
 }
 
 export { Input };

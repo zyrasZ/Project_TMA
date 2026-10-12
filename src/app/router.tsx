@@ -9,6 +9,8 @@ import { ProtectedRoute } from '../components/layout/ProtectedRoute';
 import { CompanyManagementPage } from '../pages/Admin/CompanyManagement/CompanyManagementPage';
 import { StaffLayout } from '../components/layout/staff/StaffLayout';
 import { OverviewPage } from '../pages/Staff/Overview/OverviewPage';
+import { StationManagementPage } from '../pages/Staff/Stations/StationManagementPage';
+import { FuelParamsPage } from '../pages/Staff/Stations/FuelParamsPage';
 
 export const AppRouter = () => {
   return (
@@ -43,6 +45,10 @@ export const AppRouter = () => {
           <Route element={<StaffLayout />}>
             <Route index element={<Navigate to="/staff/overview" replace />} />
             <Route path="overview" element={<OverviewPage />} />
+            <Route path="stations">
+              <Route index element={<StationManagementPage />} />
+              <Route path=":id/fuel-params" element={<FuelParamsPage />} />
+            </Route>
           </Route>
         </Route>
         

@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavigationMenu as PRNavigationMenu } from 'primereact/navigationmenu';
 import { Menu as PRMenu } from 'primereact/menu';
@@ -22,18 +22,40 @@ function NavigationMenu({ className, ...props }: any) {
   );
 }
 
-function NavMenuTrigger({ children, className }: any) {
+function NavMenuTrigger({ children, className, hasDropdown = true, to }: any) {
+  const content = (
+    <>
+      {children}
+      {hasDropdown && <CaretDown weight="bold" className="w-[10px] h-[10px] ml-1 opacity-70" />}
+    </>
+  );
+
+  const baseClasses = 'inline-flex items-center justify-center px-3 h-full cursor-pointer select-none no-underline bg-transparent outline-none text-[13px] transition-colors border-b-[3px] font-medium';
+  
+  if (to) {
+    return (
+      <NavLink
+        to={to}
+        className={({ isActive }) => cn(
+          baseClasses,
+          isActive ? 'border-primary text-primary' : 'border-transparent text-content-sub hover:text-content-main',
+          className
+        )}
+      >
+        {content}
+      </NavLink>
+    );
+  }
+
   return (
     <div
       className={cn(
-        'inline-flex items-center justify-center px-3 h-full cursor-pointer select-none no-underline',
-        'bg-transparent outline-none text-[13px] transition-colors',
-        'border-transparent text-content-sub hover:text-content-main font-medium',
+        baseClasses,
+        'border-transparent text-content-sub hover:text-content-main',
         className
       )}
     >
-      {children}
-      <CaretDown weight="bold" className="w-[10px] h-[10px] ml-1 opacity-70" />
+      {content}
     </div>
   );
 }
@@ -60,7 +82,7 @@ export const StaffNavbar = () => {
 
           <nav className="hidden md:flex items-center space-x-2 h-full flex-1 justify-start">
             <NavMenuTrigger>{t('staffNavbar.account')}</NavMenuTrigger>
-            <NavMenuTrigger>{t('staffNavbar.stations')}</NavMenuTrigger>
+            <NavMenuTrigger to="/staff/stations" hasDropdown={false}>{t('staffNavbar.stations')}</NavMenuTrigger>
             <NavMenuTrigger>{t('staffNavbar.invoices')}</NavMenuTrigger>
             <NavMenuTrigger>{t('staffNavbar.shifts')}</NavMenuTrigger>
             <NavMenuTrigger>{t('staffNavbar.customers')}</NavMenuTrigger>

@@ -15,7 +15,7 @@ export const selectVariants = cva(
         false: 'border-border focus-within:!border-primary hover:border-primary',
       },
       isDisabled: {
-        true: 'bg-surface cursor-not-allowed opacity-70 pointer-events-none',
+        true: 'bg-[#EAEBEB] cursor-not-allowed pointer-events-none text-content-main',
         false: '',
       },
     },
@@ -70,8 +70,20 @@ export const Select = ({
   }, [value]);
 
   const handleChange = (e: any) => {
-    // Some Headless components pass the event object {value: ...}, others pass the value directly.
-    const newValue = e && typeof e === 'object' && 'value' in e ? e.value : e;
+    let newValue = e;
+    if (e && typeof e === 'object') {
+      if ('value' in e) newValue = e.value;
+      else if (e.target && 'value' in e.target) newValue = e.target.value;
+    }
+    // If newValue is an array with one item, extract it
+    if (Array.isArray(newValue) && newValue.length > 0) {
+      newValue = newValue[0];
+    }
+    // If it's still an object (like a synthetic event that didn't have target.value), fallback to string
+    if (typeof newValue === 'object' && newValue !== null) {
+      newValue = String(newValue);
+    }
+    
     setInternalValue(newValue);
     onChange?.({ value: newValue });
   };

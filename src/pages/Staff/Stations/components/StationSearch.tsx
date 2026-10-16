@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Input } from '../../../../components/ui/Input';
 import { MagnifyingGlass } from '@phosphor-icons/react';
+import { useDebounce } from '../../../../hooks/ui/useDebounce';
 
 interface StationSearchProps {
   search: string;
@@ -10,23 +11,19 @@ interface StationSearchProps {
 
 export const StationSearch = ({ search, setSearch }: StationSearchProps) => {
   const { t } = useTranslation('common');
-  const [localSearch, setLocalSearch] = useState(search);
+  const [localSearch, setLocalSearch] = useState<string>(search);
+
+  const debouncedSearch = useDebounce<string>(localSearch, 500);
 
   useEffect(() => {
     setLocalSearch(search);
   }, [search]);
 
   useEffect(() => {
-    const handler = setTimeout(() => {
-      if (search !== localSearch) {
-        setSearch(localSearch);
-      }
-    }, 500);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [localSearch, search, setSearch]);
+    if (search !== debouncedSearch) {
+      setSearch(debouncedSearch);
+    }
+  }, [debouncedSearch, search, setSearch]);
 
   return (
     <div className="w-full md:w-[320px]">

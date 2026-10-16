@@ -83,7 +83,7 @@ export const StaffNavbar = () => {
           <nav className="hidden md:flex items-center space-x-2 h-full flex-1 justify-start">
             <NavMenuTrigger>{t('staffNavbar.account')}</NavMenuTrigger>
             <NavMenuTrigger to="/staff/stations" hasDropdown={false}>{t('staffNavbar.stations')}</NavMenuTrigger>
-            <NavMenuTrigger>{t('staffNavbar.invoices')}</NavMenuTrigger>
+            <NavMenuTrigger to="/staff/invoices">{t('staffNavbar.invoices')}</NavMenuTrigger>
             <NavMenuTrigger>{t('staffNavbar.shifts')}</NavMenuTrigger>
             <NavMenuTrigger>{t('staffNavbar.customers')}</NavMenuTrigger>
             <NavMenuTrigger>{t('staffNavbar.allocation')}</NavMenuTrigger>

@@ -102,7 +102,7 @@ export const Select = ({
       className={cn(selectVariants({ hasError: isError, isDisabled: isSelectDisabled, className }))}
       {...props}
     >
-      <PrimeSelect.Trigger className="w-full h-full flex items-center justify-between px-3 cursor-pointer outline-none">
+      <PrimeSelect.Trigger as="div" className="w-full h-full flex items-center justify-between px-3 cursor-pointer outline-none">
         <PrimeSelect.Value className="text-sm text-content-main truncate" placeholder={placeholder} />
         <CaretDown size={16} className={cn('text-content-hint', isError && 'text-alert')} />
       </PrimeSelect.Trigger>

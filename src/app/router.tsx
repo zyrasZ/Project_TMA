@@ -11,6 +11,7 @@ import { StaffLayout } from '../components/layout/staff/StaffLayout';
 import { OverviewPage } from '../pages/Staff/Overview/OverviewPage';
 import { StationManagementPage } from '../pages/Staff/Stations/StationManagementPage';
 import { FuelParamsPage } from '../pages/Staff/Stations/FuelParamsPage';
+import { InvoiceConfigPage } from '../pages/Staff/InvoiceConfig/InvoiceConfigPage';
 
 export const AppRouter = () => {
   return (
@@ -48,6 +49,10 @@ export const AppRouter = () => {
             <Route path="stations">
               <Route index element={<StationManagementPage />} />
               <Route path=":id/fuel-params" element={<FuelParamsPage />} />
+            </Route>
+            <Route path="invoices">
+              <Route index element={<InvoiceConfigPage />} />
+              <Route path="config" element={<InvoiceConfigPage />} />
             </Route>
           </Route>
         </Route>

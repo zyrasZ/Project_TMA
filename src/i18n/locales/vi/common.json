@@ -303,5 +303,102 @@
         "delete": "Xóa"
       }
     }
+  },
+  "invoiceConfig": {
+    "title": "Cấu hình xuất hóa đơn",
+    "addBtn": "Thêm cấu hình",
+    "search": "Tìm kiếm",
+    "searchPlaceholder": "Tìm kiếm",
+    "itemName": "cấu hình",
+    "table": {
+      "id": "ID",
+      "configName": "Tên cấu hình",
+      "provider": "Đơn vị cung cấp",
+      "pattern": "Mẫu số",
+      "serial": "Ký hiệu",
+      "taxRate": "Thuế suất",
+      "digitalSignature": "Ký số",
+      "actions": "Chức năng",
+      "empty": "Chưa có cấu hình hóa đơn nào.",
+      "editTooltip": "Chỉnh sửa cấu hình",
+      "deleteTooltip": "Xóa cấu hình"
+    },
+    "modal": {
+      "addTitle": "Thêm cấu hình hóa đơn mới",
+      "editTitle": "Cập nhật cấu hình hóa đơn",
+      "configName": "Tên cấu hình",
+      "configNamePlaceholder": "Nhập tên cấu hình",
+      "station": "Trạm",
+      "stationPlaceholder": "Chọn trạm",
+      "stationAll": "Chọn tất cả",
+      "taxRate": "Thuế suất",
+      "taxRatePlaceholder": "Chọn thuế suất",
+      "paymentMethod": "Hình thức thanh toán",
+      "paymentMethodPlaceholder": "Chọn hình thức",
+      "provider": "Đơn vị cung cấp",
+      "providerPlaceholder": "Chọn đơn vị cung cấp",
+      "taxCode": "Mã số thuế",
+      "taxCodePlaceholder": "Nhập mã số thuế",
+      "serial": "Ký hiệu",
+      "serialPlaceholder": "Nhập ký hiệu HĐĐT",
+      "username": "Tên đăng nhập",
+      "usernamePlaceholder": "Nhập tên đăng nhập",
+      "password": "Mật khẩu",
+      "passwordPlaceholder": "Nhập mật khẩu",
+      "apiBaseUrl": "Địa chỉ API (Base URL)",
+      "apiBaseUrlPlaceholder": "Nhập địa chỉ API",
+      "hasDigitalSignature": "Chữ ký số",
+      "pattern": "Mẫu số",
+      "patternPlaceholder": "Nhập mẫu số (ví dụ: 1)",
+      "digitalSignature": "Sử dụng chữ ký số",
+      "cancel": "Hủy",
+      "save": "Lưu",
+      "create": "Lưu",
+      "requiredField": "Trường này là bắt buộc",
+      "validation": {
+        "configNameRequired": "Vui lòng nhập tên cấu hình",
+        "stationRequired": "Vui lòng chọn trạm",
+        "taxRateRequired": "Vui lòng chọn thuế suất",
+        "paymentMethodRequired": "Vui lòng chọn hình thức thanh toán",
+        "providerRequired": "Vui lòng chọn đơn vị cung cấp",
+        "taxCodeRequired": "Vui lòng nhập mã số thuế",
+        "serialRequired": "Vui lòng nhập ký hiệu",
+        "usernameRequired": "Vui lòng nhập tên đăng nhập",
+        "passwordRequired": "Vui lòng nhập mật khẩu",
+        "apiBaseUrlRequired": "Vui lòng nhập địa chỉ API"
+      }
+    },
+    "deleteModal": {
+      "title": "Xóa cấu hình hóa đơn",
+      "confirmMsg": "Bạn có muốn xóa cấu hình hóa đơn này không?",
+      "warning": "Sau khi xoá, toàn bộ thông tin liên quan đến cấu hình hóa đơn này sẽ bị xóa khỏi cơ sở dữ liệu. Tuy nhiên, các hóa đơn đã phát hành theo cấu hình hóa đơn này vẫn sẽ được lưu trữ.",
+      "cancel": "Hủy",
+      "confirm": "Xác nhận",
+      "delete": "Xóa"
+    },
+    "detailModal": {
+      "title": "Thông tin cấu hình",
+      "id": "ID",
+      "configName": "Tên cấu hình",
+      "station": "Trạm",
+      "stationAll": "Tất cả",
+      "taxRate": "Thuế suất",
+      "paymentMethod": "Hình thức thanh toán",
+      "provider": "Đơn vị cung cấp",
+      "pattern": "Mẫu số",
+      "taxCode": "Mã số thuế",
+      "serial": "Ký hiệu",
+      "username": "Tên đăng nhập",
+      "password": "Mật khẩu",
+      "apiBaseUrl": "Địa chỉ API (Base URL)",
+      "digitalSignature": "Ký số",
+      "close": "Đóng"
+    },
+    "toast": {
+      "success": "Thành công",
+      "addSuccess": "Đã thêm cấu hình hóa đơn mới",
+      "updateSuccess": "Đã cập nhật cấu hình hóa đơn",
+      "deleteSuccess": "Đã xóa cấu hình hóa đơn"
+    }
   }
 }

@@ -303,5 +303,102 @@
         "delete": "Delete"
       }
     }
+  },
+  "invoiceConfig": {
+    "title": "Invoice Export Configuration",
+    "addBtn": "Add Configuration",
+    "search": "Search",
+    "searchPlaceholder": "Search",
+    "itemName": "configurations",
+    "table": {
+      "id": "ID",
+      "configName": "Config Name",
+      "provider": "Provider",
+      "pattern": "Invoice Pattern",
+      "serial": "Serial",
+      "taxRate": "Tax Rate",
+      "digitalSignature": "Digital Signature",
+      "actions": "Actions",
+      "empty": "No invoice configurations found.",
+      "editTooltip": "Edit configuration",
+      "deleteTooltip": "Delete configuration"
+    },
+    "modal": {
+      "addTitle": "Add New Invoice Configuration",
+      "editTitle": "Update Invoice Configuration",
+      "configName": "Config Name",
+      "configNamePlaceholder": "Enter configuration name",
+      "station": "Station",
+      "stationPlaceholder": "Select stations",
+      "stationAll": "Select all",
+      "taxRate": "Tax Rate",
+      "taxRatePlaceholder": "Select tax rate",
+      "paymentMethod": "Payment Method",
+      "paymentMethodPlaceholder": "Select method",
+      "provider": "Provider",
+      "providerPlaceholder": "Select provider",
+      "taxCode": "Tax Code",
+      "taxCodePlaceholder": "Enter tax code",
+      "serial": "Serial",
+      "serialPlaceholder": "Enter invoice serial (e.g. C24MQQ)",
+      "username": "Username",
+      "usernamePlaceholder": "Enter username",
+      "password": "Password",
+      "passwordPlaceholder": "Enter password",
+      "apiBaseUrl": "API Base URL",
+      "apiBaseUrlPlaceholder": "Enter API base URL",
+      "hasDigitalSignature": "Digital Signature",
+      "pattern": "Invoice Pattern",
+      "patternPlaceholder": "Enter pattern (e.g. 1)",
+      "digitalSignature": "Use Digital Signature",
+      "cancel": "Cancel",
+      "save": "Save",
+      "create": "Save",
+      "requiredField": "This field is required",
+      "validation": {
+        "configNameRequired": "Please enter configuration name",
+        "stationRequired": "Please select a station",
+        "taxRateRequired": "Please select a tax rate",
+        "paymentMethodRequired": "Please select a payment method",
+        "providerRequired": "Please select a provider",
+        "taxCodeRequired": "Please enter tax code",
+        "serialRequired": "Please enter serial",
+        "usernameRequired": "Please enter username",
+        "passwordRequired": "Please enter password",
+        "apiBaseUrlRequired": "Please enter API base URL"
+      }
+    },
+    "deleteModal": {
+      "title": "Delete invoice configuration",
+      "confirmMsg": "Do you want to delete this invoice configuration?",
+      "warning": "Once deleted, all information related to this invoice configuration will be deleted from the database. However, invoices already issued under this configuration will still be stored.",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "delete": "Delete"
+    },
+    "detailModal": {
+      "title": "Configuration Information",
+      "id": "ID",
+      "configName": "Configuration Name",
+      "station": "Station",
+      "stationAll": "All",
+      "taxRate": "Tax Rate",
+      "paymentMethod": "Payment Method",
+      "provider": "Provider",
+      "pattern": "Pattern",
+      "taxCode": "Tax Code",
+      "serial": "Serial",
+      "username": "Username",
+      "password": "Password",
+      "apiBaseUrl": "API Address (Base URL)",
+      "digitalSignature": "Digital Signature",
+      "close": "Close"
+    },
+    "toast": {
+      "success": "Success",
+      "addSuccess": "Added new invoice configuration successfully",
+      "updateSuccess": "Updated invoice configuration successfully",
+      "deleteSuccess": "Deleted invoice configuration successfully"
+    }
   }
 }
